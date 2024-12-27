@@ -20,7 +20,8 @@ var colortxt = colortxt1;
 var gendertext1 = "It is a Girl!";
 var gendertext = gendertext1;
 var catText = ["Inside the House","Outside the House", "Food Related", "Adventurous","Sensual","Love Vouchers"]
-var col = ['#ffde59','#7b94ff','#38b6ff','#c1ff72','#ff7272','#ff00cf'];
+var col = ['#ff9900','#7b94ff','#38b6ff','#c1ff72','#ff7272','#ff00cf'];
+var loc = ["inside.html","outside.html","food.html","adventure.html","sensual.html","love.html"];
 function shadeColor(color, percent) {
 
     var R = parseInt(color.substring(1,3),16);
@@ -79,6 +80,9 @@ function randomInRangeint(min, max) {
 function getCatText(i){
     return catText[i];
 }
+function getlocAddress(i){
+    return loc[i];
+}
 function confetti_effect(index) {
     soundHandle.src = 'audio/celebrate.mp3';
     $("#spinbtn").hide();
@@ -91,7 +95,7 @@ function confetti_effect(index) {
     //$('.images').hide();
     $('#or').hide();
     $('#girl').hide();
-    document.getElementsByTagName("body")[0].style.backgroundColor = pSBC(0.5,col[index],false,true);
+    document.getElementsByTagName("body")[0].style.backgroundColor = pSBC(-0.3,col[index],false,true);
     document.getElementsByTagName("body")[0].style.backgroundImage = 'none';
     //document.getElementById("H3").insertAdjacentHTML('afterend', "<h4 id='testtext' style='white-space:normal'> Depending on the product you buy, here it will say either <br> 'It is a Girl!' or 'It is a Boy! with pink or blue background.</h4>");
 
@@ -130,7 +134,7 @@ function confetti_effect(index) {
           
  };
 
- export {confetti_effect, getCatText};
+ export {confetti_effect, getCatText,getlocAddress};
 
     function playticksound() {
         if (!nosound ) {
@@ -153,11 +157,8 @@ export {playticksound};
         $('#tboy').hide();
         $('#boy').show();
         $('#or').show();
-        $('#girl').show();
         document.getElementById("spinbtn").value = "Spin!";
-
-        $('#H3').show();
-        $('#H4').show();
+        document.getElementsByTagName("body")[0].style.backgroundColor = "#FFFFFF";
         triggered = false;
         confetti.reset();
         soundHandle.pause();

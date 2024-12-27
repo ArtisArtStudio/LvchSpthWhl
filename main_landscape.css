@@ -54,6 +54,8 @@ font-size: calc(1rem + 1vw);
   line-height: 18vh;
 }
 #tboy {
+  float: right;
+  display: inline-table;
   margin-right: 0;
   text-align:right;
   width: calc(50% - 10px);

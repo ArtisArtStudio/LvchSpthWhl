@@ -1,4 +1,4 @@
-import {confetti_effect, playticksound, onResetClicked,getCatText} from './main.js';
+import {confetti_effect, playticksound, onResetClicked, getCatText, getlocAddress} from './main.js';
 var finishedSpin = false;
 window.onload = async () => {
     getOS();
@@ -78,7 +78,7 @@ window.onload = async () => {
 
         confetti_effect(wheel._currentIndex);
         finishedSpin = true;
-        document.getElementById("spinbtn").value = "Go to the Category";
+        btn.value = "Go to the Category";
 
     };
     var playtick = function() {
@@ -107,13 +107,16 @@ window.onload = async () => {
   
       // Listen for click event on spin button:
       if (e.target === btn) {
+        
         if (finishedSpin) {
-          wheel.spinTo(1);
+                location.href = getlocAddress(wheel._currentIndex);
+        }
+            /*wheel.spinTo(1);
           wheel.isSpinning=0;
           onResetClicked();
           document.getElementById("scratcher-box").focus();
-          return;
-        }
+          return;*/
+        
     
         if (wheel.isSpinning) {
           return;
