@@ -1,9 +1,16 @@
-import { tsParticles } from "https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.0.3/+esm";
-import { loadAll } from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.0.3/+esm";
+
+import { getOSver, getOS } from "./main.js";
+
+var OS;
+var OSver;
+
+$(document).ready(async function () {
+  await loadHeartShape(tsParticles);
+  await loadFull(tsParticles);
+});
 
 async function loadParticles(options) {
-    await loadAll(tsParticles);
-  
+  //await loadFull(tsParticles);
     await tsParticles.load({ id: "tsparticles", options });
 
   }
@@ -53,7 +60,7 @@ async function loadParticles(options) {
         }
       }    
     }
-  }
+  };
   
 const optionsConfetti = {
   autoPlay: true,
@@ -65,7 +72,7 @@ const optionsConfetti = {
       value: 0
     },
     color: {
-      value: ["#1E00FF", "#FF0061", "#E1FF00", "#00FF9E"]
+      value: "#1E00FF"
     },
     shape: {
       type: ["circle", "square"]
@@ -162,12 +169,12 @@ const optionsConfetti = {
       resize: true
     }
   },
-  detectRetina: true,
+  detectRetina:false,
   emitters: [
     {
       direction: "top-right",
       life: {
-        duration: 10,
+        duration: 3,
         count: 1
       },
       rate: {
@@ -185,7 +192,7 @@ const optionsConfetti = {
     },
     {
       life: {
-        duration: 10,
+        duration: 3,
         count: 1
       },
       direction: "top",
@@ -204,7 +211,7 @@ const optionsConfetti = {
     },
     {
       life: {
-        duration: 10,
+        duration: 3,
         count: 1
       },
       direction: "top-left",
@@ -223,23 +230,59 @@ const optionsConfetti = {
     }
   ]
 }
-loadParticles(options);
+//loadParticles(options);
 
-function startParticles() {
+function startParticles(color) {
+  options.particles.color = color;
   loadParticles(options);
   tsParticles.domItem(0).play();
-
 }
 function stopParticles() {
   tsParticles.domItem(0).stop();
 }
-function startConfetti() {
-  loadParticles(optionsConfetti);
-  tsParticles.domItem(0).play();
+function startConfetti(color) {
+  //alert(userOS+"startc");
+  OS = getOS();
+  OSver = Number(getOSver());
+  if ((OS === 'iOS' && OSver >= 14 ) || OS === 'Android'|| typeof OS === 'undefined') {
+    optionsConfetti.particles.color = color;
+    loadParticles(optionsConfetti);
+    tsParticles.domItem(0).play();
+  } else {
+    confetti_fallback(color);
+  }
 }
 function stopConfetti() {
+  OS = getOS();
+  OSver = Number(getOSver());
+  if ((OS === 'iOS' && OSver >= 14 ) || OS === 'Android'|| typeof OS === 'undefined') {
   tsParticles.domItem(0).stop();
+  }
 }
 export {startParticles, stopParticles, startConfetti, stopConfetti};
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
+function confetti_fallback(color) {
+  var duration = 1 * 1000;
+   var end = Date.now() + duration;
+   var defaults = { startVelocity: 10, spread: 360, ticks: 70, zIndex: 0 };
+   var particleCount = 5 ;
+  
+   (function frame() {
+   // launch a few confetti from the left edge
+   confetti({...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: [color]}
+   );
+   // and launch a few from the right edge
+   confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },colors: [color]}
+   );
 
+   // keep going until we are out of time
+   if (Date.now() < end) {
+       requestAnimationFrame(frame);
+       
+       return;
+   }
+  }());
+}

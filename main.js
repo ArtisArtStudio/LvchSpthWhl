@@ -3,49 +3,19 @@
  *
  * depends on jQuery>=1.7
  */
+import {startParticles, stopParticles, startConfetti, stopConfetti} from './particles.js';
 
-var surname;
+
+var userOS;    // will either be iOS, Android or unknown
+var userOSver; // this is a string, use Number(userOSver) to convert
 var soundHandle = new Audio();
 //var soundcounter= 0;
 var triggered=false;
 var nosound=true;
-var color1 = '#ff95c8';
-
-var colortxt1 = '#F860AA';
-
-//Select the background color
-var color =color1;
-//Select the text color
-var colortxt = colortxt1;
-var gendertext1 = "It is a Girl!";
-var gendertext = gendertext1;
-var catText = ["Inside the House","Outside the House", "Food Related", "Adventurous","Sensual","Love Vouchers"]
+var color;
 var col = ['#ff9900','#7b94ff','#38b6ff','#c1ff72','#ff7272','#ff00cf'];
 var loc = ["inside.html","outside.html","food.html","adventure.html","sensual.html","love.html"];
-function shadeColor(color, percent) {
 
-    var R = parseInt(color.substring(1,3),16);
-    var G = parseInt(color.substring(3,5),16);
-    var B = parseInt(color.substring(5,7),16);
-
-    R = parseInt(R * (100 + percent) / 100);
-    G = parseInt(G * (100 + percent) / 100);
-    B = parseInt(B * (100 + percent) / 100);
-
-    R = (R<255)?R:255;  
-    G = (G<255)?G:255;  
-    B = (B<255)?B:255;  
-
-    R = Math.round(R)
-    G = Math.round(G)
-    B = Math.round(B)
-
-    var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
-    var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
-    var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
-
-    return "#"+RR+GG+BB;
-}
 const pSBC=(p,c0,c1,l)=>{
     let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
     let pSBCr = null;
@@ -77,19 +47,66 @@ function randomInRange(min, max) {
 function randomInRangeint(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 };
-function getCatText(i){
-    return catText[i];
-}
+
 function getlocAddress(i){
     return loc[i];
 }
-function confetti_effect(index) {
+
+function findOS()
+{
+  var ua = navigator.userAgent;
+  var uaindex;
+  // determine OS
+  if ( ua.match(/iPad/) || ua.match(/iPod/) || ua.match(/iPhone/) )
+  {
+    userOS = 'iOS';
+    uaindex = ua.indexOf( 'OS ' );
+  }
+  else if ( ua.match(/Android/) )
+  {
+    userOS = 'Android';
+    uaindex = ua.indexOf( 'Android ' );
+  }
+  else
+  {
+    userOS = 'unknown';
+  }
+
+  // determine version
+  if ( userOS === 'iOS'  &&  uaindex > -1 )
+  {
+    userOSver = ua.substring(uaindex + 3, uaindex+3+2);
+  }
+  else if ( userOS === 'Android'  &&  uaindex > -1 )
+  {
+    userOSver = ua.substring( uaindex + 8, uaindex + 8 + 3 );
+  }
+  else
+  {
+    userOSver = 'unknown';
+  }
+}
+function getOS(){
+    return userOS;
+}
+function getOSver(){
+    return userOSver.slice(0,2);
+}
+function message_popup(text,title,coupon){
+    document.getElementById('id01').style.display='block';
+    document.getElementById('form').style.backgroundColor =color;
+    document.getElementById('title').textContent=title;
+    document.getElementById('category').textContent=text;
+    document.getElementById('coupon').textContent=coupon;
+
+
+}
+function confetti_effect(stext, index) {
     soundHandle.src = 'audio/celebrate.mp3';
     $("#spinbtn").hide();
     $("#button").hide();
-
     $('#tboy').show();
-    $('#tboy').text(catText[index]);
+    $('#tboy').text(stext);
     $('#tboy').css('color',col[index]);
     $('#boy').hide();
     //$('.images').hide();
@@ -109,32 +126,17 @@ function confetti_effect(index) {
         soundHandle.play();
     }
     triggered=true;
-   // do this for 10 seconds
-   var duration = 1 * 1000;
-   var end = Date.now() + duration;
-   var defaults = { startVelocity: 10, spread: 360, ticks: 70, zIndex: 0 };
-   var particleCount = 5 ;
-   (function frame() {
-   // launch a few confetti from the left edge
-   confetti({...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#FFFFFF']}
-   );
-   // and launch a few from the right edge
-   confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },colors: ['#FFFFFF']}
-   );
-
-   // keep going until we are out of time
-   if (Date.now() < end && triggered==true) {
-       requestAnimationFrame(frame);
-       
-       return;
-   }
-   $("#spinbtn").show();
    
-   }());
+    startConfetti(col[index]);
+    setTimeout(function(){
+        $("#spinbtn").show();
+    }, 1000);
+   
+ 
           
  };
 
- export {confetti_effect, getCatText,getlocAddress};
+ export {confetti_effect,getlocAddress, getOS, getOSver,message_popup};
 
     function playticksound() {
         if (!nosound ) {
@@ -173,8 +175,16 @@ export {playticksound};
         var i, i1;
         //document.getElementById('intro').innerHTML= "This is a gender reveal spin the wheel for <strong>" + surname + "</strong> family. It contains high level sound. Do you want to continue with sound?";
         document.getElementById('id01').style.display='none';
-        document.getElementById('myDropdown').style.display='none';
-
+        //document.getElementById('myDropdown').style.display='none';
+        findOS();
+        var tx = document.getElementById('boy').innerText;
+        if (tx.slice(0,4)==="Love") {
+            color = "#FF0000";
+        }
+        if (tx.slice(0,4)==="Insi") {
+            color = col[0];
+        }
+        startParticles(color);
         $('.dropbtn').on("click", function(e) {
             document.getElementById('myDropdown').style.display='block';
 

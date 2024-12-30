@@ -1,7 +1,8 @@
-import {confetti_effect, playticksound, onResetClicked, getCatText, getlocAddress} from './main.js';
+import {confetti_effect, playticksound, onResetClicked, getlocAddress, getOS, getOSver} from './main.js';
 var finishedSpin = false;
+var catText = ["Inside the House","Outside the House", "Food Related", "Adventurous","Sensual","Love Vouchers"];
+
 window.onload = async () => {
-    getOS();
     /* let elem = document.getElementById('scratcher-box');
     let ht = window.getComputedStyle(elem, null).getPropertyValue("top"); */
     /* let mql = window.matchMedia("(max-height: 321px)");
@@ -16,10 +17,10 @@ window.onload = async () => {
         a.src = './images/spinthewheel-overlay.png';
     } else {  */
         a.src = './images/spinthewheel-overlay.png';
-    var catText = new Array(6);
+    /* var catText = new Array(6);
     for (let index = 0; index < 7; index++) {
         catText[index] = getCatText(index);
-    }
+    } */
     //}
     const container = document.querySelector('.wheel-wrapper');
     const btn = document.getElementById("spinbtn");
@@ -76,7 +77,7 @@ window.onload = async () => {
           return;
         }
 
-        confetti_effect(wheel._currentIndex);
+        confetti_effect(catText[wheel._currentIndex],wheel._currentIndex);
         finishedSpin = true;
         btn.value = "Go to the Category";
 
@@ -153,44 +154,6 @@ window.onload = async () => {
 function randomInRangeint(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 };
-var userOS;    // will either be iOS, Android or unknown
-var userOSver; // this is a string, use Number(userOSver) to convert
-
-function getOS( )
-{
-  var ua = navigator.userAgent;
-  var uaindex;
-
-  // determine OS
-  if ( ua.match(/iPad/) || ua.match(/iPod/) || ua.match(/iPhone/) )
-  {
-    userOS = 'iOS';
-    uaindex = ua.indexOf( 'OS ' );
-  }
-  else if ( ua.match(/Android/) )
-  {
-    userOS = 'Android';
-    uaindex = ua.indexOf( 'Android ' );
-  }
-  else
-  {
-    userOS = 'unknown';
-  }
-
-  // determine version
-  if ( userOS === 'iOS'  &&  uaindex > -1 )
-  {
-    userOSver = ua.substring(uaindex + 3, uaindex+3+2);
-  }
-  else if ( userOS === 'Android'  &&  uaindex > -1 )
-  {
-    userOSver = ua.substring( uaindex + 8, uaindex + 8 + 3 );
-  }
-  else
-  {
-    userOSver = 'unknown';
-  }
-}
 
 var N = Object.defineProperty;
 var y = Object.getOwnPropertySymbols;
@@ -387,7 +350,9 @@ function V(i = {}) {
     });
 
     let e = () => {
-        if ((userOS === 'iOS' && Number( userOSver.charAt(0) ) >= 14 ) || userOS === 'Android') {
+        var OS = getOS();
+        var OSver = getOSver();
+        if ((OS === 'iOS' && Number(OSver) >= 14 ) || OS === 'Android') {
         i._mediaQueryList = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`), i._mediaQueryList.addEventListener("change", i._handler_onDevicePixelRatioChange, {
             once: !0
         })
