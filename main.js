@@ -96,8 +96,9 @@ function message_popup(text,title,coupon){
     document.getElementById('id01').style.display='block';
     document.getElementById('form').style.backgroundColor =color;
     document.getElementById('title').textContent=title;
-    document.getElementById('category').textContent=text;
-    document.getElementById('coupon').textContent=coupon;
+    document.getElementById('category').innerHTML="<u>" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal; word-break: keep-all ;\"></span>";
+
+    $('#coupon').text(" "+coupon);
 
 
 }

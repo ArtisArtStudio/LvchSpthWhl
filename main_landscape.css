@@ -86,6 +86,10 @@ font-size: 7vw !important;
   left: 0%;
   border-radius: 5%;
 }
+
+.modal-content {
+  width: 60%;
+}
 /* Styles for mobile phones */ 
 
 @media (max-width:620px){ 
