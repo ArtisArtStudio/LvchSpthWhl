@@ -10,6 +10,7 @@ var userOS;    // will either be iOS, Android or unknown
 var userOSver; // this is a string, use Number(userOSver) to convert
 var soundHandle = new Audio();
 //var soundcounter= 0;
+var pageindex=0;
 var triggered=false;
 var nosound=true;
 var color;
@@ -175,15 +176,19 @@ export {playticksound};
     function initPage() {
         var i, i1;
         //document.getElementById('intro').innerHTML= "This is a gender reveal spin the wheel for <strong>" + surname + "</strong> family. It contains high level sound. Do you want to continue with sound?";
-        document.getElementById('id01').style.display='none';
         //document.getElementById('myDropdown').style.display='none';
         findOS();
         var tx = document.getElementById('boy').innerText;
         if (tx.slice(0,4)==="Love") {
-            color = "#FF0000";
+            pageindex = 0;
         }
         if (tx.slice(0,4)==="Insi") {
-            color = col[0];
+            pageindex = 1;
+        }
+        color = col[pageindex-1];
+        if (pageindex==0) {
+            color="#FF0000";
+            document.getElementById('id01').style.display='block';
         }
         startParticles(color);
         $('.dropbtn').on("click", function(e) {

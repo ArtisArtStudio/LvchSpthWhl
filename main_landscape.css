@@ -24,13 +24,13 @@ body {
 
 }
 .pagetop h1 {
-font-size: calc(4rem + 0.8vw);
+font-size: calc(3rem + 4vh);
 text-align: right;
 padding-right: 10px;
 } 
 .pagetop h3 {
 font-style: normal;
-font-size: calc(1rem + 1vw);
+font-size: calc(1rem + 1vh);
 } 
 .pagetop h4 {
   display:inline;
@@ -89,8 +89,20 @@ font-size: 7vw !important;
 
 .modal-content {
   width: 60%;
+  margin: 1% auto auto auto; /* 5% from the top, 15% from the bottom and centered */
+
 }
 /* Styles for mobile phones */ 
+
+#spinbtn {
+  font-size: 2vw;  
+}
+.dropbtn {
+  font-size: 2vw;
+}
+.dropdown-content {
+  font-size: 2vw;
+}
 
 @media (max-width:620px){ 
   
@@ -137,11 +149,11 @@ font-size: 7vw !important;
     font-size: calc(0.5rem + 0.70vw);
   }
   .pagetop h3 {
-    font-size: calc(1rem + 1vw);
+    font-size: calc(0.8rem + 1vw);
   }
   #scratcher-box {
-    width: 18em;
-    height: 18em;
+    width: 20em;
+    height: 20em;
     top: 50%;
     left: 0%;
   }
@@ -173,8 +185,8 @@ font-size: 7vw !important;
     font-size: calc(1rem + 6vw);
   }
   #scratcher-box {
-    width: 17em;
-    height: 17em;
+    width: 18em;
+    height: 18em;
     top: 50%;
     left: 5%;
   } 
@@ -182,11 +194,11 @@ font-size: 7vw !important;
 }
 @media screen and (max-height:290px){ 
   .pagetop h1 {
-    font-size: calc(1rem + 6vw);
+    font-size: calc(1rem + 5vw);
   }
   #scratcher-box {
-    width: 15em;
-    height: 15em;
+    width: 16em;
+    height: 16em;
     top: 50%;
     left: 3vw;
   } 

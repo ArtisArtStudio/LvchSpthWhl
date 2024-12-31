@@ -14,7 +14,7 @@ html {
 }
 body {
   height: 100vh;
-  /*background-image: url(images/background.jpg);*/
+  background-image: url(images/background.jpg);
   background-color: #FFFFFF;
   background-repeat: no-repeat;
   background-position: center center;
@@ -67,7 +67,7 @@ font-weight: 400;
 flex-direction: column;
 font-size: calc(3rem + 4vw);
 text-align: center;
-text-shadow: 2px 2px #ffffff;
+text-shadow: 4px 4px #ffffff;
 } 
 .pagetop h3 {
 font-family: "Roboto", serif;
@@ -232,17 +232,6 @@ hr {
   display: table;
 }
 
-/* Change styles for cancel button and delete button on extra small screens */
-@media screen and (max-width: 360px) {
-  .nosoundbtn, .withsoundbtn {
-    font-size: 5vw; 
-    width: 100%;
-  }
-  h2{
-    font-size: 6vw;
-  }
-}
-
 #spinbtn {
   border: none;
   padding: 10px 40px;
@@ -257,6 +246,9 @@ hr {
   text-shadow: 0px 0px 10px rgba(0,0,0,0.2);
   display:inline-block;
   font-size: 2vh;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: 0 0 30px rgba(8, 7, 16, 0.6);
   
 }
   
@@ -360,19 +352,19 @@ backdrop-filter: blur(30px);
 }
 @media (min-height: 635px) and (min-width: 1024px){ 
   .pagetop h3 {
-    font-size: calc(2rem + 0.5vh);
+    font-size: calc(1.3rem + 1vh);
   }
   .pagetop h4 {
     font-size: 2vh;
   }
   #boy{
-    line-height: 15vh !important;
+    line-height: 16vh !important;
   }
   #scratcher-box {
     position:absolute;
-    width: 28em;
-    height: 28em; 
-    top: 65%;
+    width: 26em;
+    height: 26em; 
+    top: 67%;
   }
 }
 @media (max-width: 375px), (max-height:667px) {
@@ -401,8 +393,8 @@ backdrop-filter: blur(30px);
   } */
   #scratcher-box {
     position:absolute;
-    width: 22em;
-    height: 22em; 
+    width: 20em;
+    height: 20em; 
     top: 70%;
   }
   
@@ -438,6 +430,17 @@ backdrop-filter: blur(30px);
     width: 300px;
   } */
 }
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 360px) {
+  .nosoundbtn, .withsoundbtn {
+    font-size: 5vw; 
+    width: 100%;
+  }
+  h2{
+    font-size: 6vw;
+  }
+}
+
 #scratcher-box canvas {
   cursor: grab;
   }

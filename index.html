@@ -26,6 +26,8 @@
 
 <link href="main.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="main_landscape.css" media="screen and (orientation: landscape) and (max-width: 1023px)">
+
+
 <script src="main.js" type="module"></script>
 <script src="index.js" type="module"></script>
 <script src="particles.js" type="module"></script>
@@ -37,12 +39,13 @@
     <form class="modal-content" action="javascript:void(0);">
       <div class="container">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">×</span>
-        <h2 id="coupon"><span id="title" style="font-weight:bold; white-space:normal"></span></h2>      
+        <h2 id="coupon">Do you want to turn on sound?</h2>      
         <!-- <h5 style="color:red; white-space: normal;">This is a demo with limited functionality. So only middle row can be scratched.</h5> -->
         <div class="clearfix">
         
-          <button type="button" class="nosoundbtn">OK</button>
-          <button type="button" class="withsoundbtn">SHARE</button>
+          <button type="button" class="nosoundbtn">No Sound</button>
+          <button type="button" class="withsoundbtn">Sound On</button>
+          
         </div>
       </div>
     </form>
