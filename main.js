@@ -114,6 +114,7 @@ function confetti_effect(stext, index) {
     //$('.images').hide();
     $('#or').hide();
     $('#girl').hide();
+    stopParticles();
     document.getElementsByTagName("body")[0].style.backgroundColor = pSBC(-0.3,col[index],false,true);
     document.getElementsByTagName("body")[0].style.backgroundImage = 'none';
     //document.getElementById("H3").insertAdjacentHTML('afterend', "<h4 id='testtext' style='white-space:normal'> Depending on the product you buy, here it will say either <br> 'It is a Girl!' or 'It is a Boy! with pink or blue background.</h4>");
@@ -164,7 +165,7 @@ export {playticksound};
         document.getElementById("spinbtn").value = "Spin!";
         document.getElementsByTagName("body")[0].style.backgroundColor = "#FFFFFF";
         triggered = false;
-        confetti.reset();
+        //confetti.reset();
         soundHandle.pause();
         soundHandle.currentTime = 0;    
         return false;
@@ -200,6 +201,7 @@ export {playticksound};
             nosound=true;
         });
         $('.withsoundbtn').on("click", function (e) {
+            if (pageindex==0) {
             document.getElementById('id01').style.display='none';
             nosound=false;
             soundHandle = document.getElementById('soundHandle');              
@@ -209,7 +211,18 @@ export {playticksound};
             soundHandle.play();
             soundHandle.pause();
             createjs.Sound.registerSound({src:"audio/tick.mp3", id:"sound"});
-    
+        } else {
+            if (navigator.share) {
+                navigator.share({
+                  title: 'WebShare API Demo',
+                }).then(() => {
+                  console.log('Thanks for sharing!');
+                })
+                .catch(console.error);
+              } else {
+                console.log("fallback");
+            }
+        }
         });
        
     };
