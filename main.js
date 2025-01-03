@@ -215,7 +215,7 @@ export {playticksound};
             if (navigator.share) {
                 navigator.share({
                   title: 'Love Coupon',
-                  text : "Look What I've got! I spinned the wheel (for Love Coupons) and received this coupon!\n " + wholecoupon
+                  text : "Look What I've got! I spinned the wheel (for Love Coupons) and received this coupon!\n\n " + wholecoupon
                 }).then(() => {
 
                 })
