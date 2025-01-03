@@ -233,9 +233,13 @@ const optionsConfetti = {
 //loadParticles(options);
 
 function startParticles(color) {
-  options.particles.color = color;
-  loadParticles(options);
-  tsParticles.domItem(0).play();
+  OS = getOS();
+  OSver = Number(getOSver());
+  if ((OS === 'iOS' && OSver >= 14 ) || OS === 'Android'|| typeof OS === 'undefined') {
+    options.particles.color = color;
+    loadParticles(options);
+    tsParticles.domItem(0).play();
+  }
 }
 function stopParticles() {
   OS = getOS();
