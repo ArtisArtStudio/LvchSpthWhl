@@ -238,7 +238,11 @@ function startParticles(color) {
   tsParticles.domItem(0).play();
 }
 function stopParticles() {
-  tsParticles.domItem(0).stop();
+  OS = getOS();
+  OSver = Number(getOSver());
+  if ((OS === 'iOS' && OSver >= 14 ) || OS === 'Android'|| typeof OS === 'undefined') {
+    tsParticles.domItem(0).stop();
+  }
 }
 function startConfetti(color) {
   //alert(userOS+"startc");
