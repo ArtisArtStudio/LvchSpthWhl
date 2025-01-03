@@ -58,6 +58,7 @@ window.onload = async () => {
         catText[index] = getCatText(index);
     } */
     //}
+
     const container = document.querySelector('.wheel-wrapper');
     const btn = document.getElementById("spinbtn");
     const props = {
@@ -222,7 +223,7 @@ window.onload = async () => {
         const duration = 7000;
         //playticksound();
         document.getElementById("scratcher-box").focus();
-        wheel.spinTo(randomInRangeint(3600,7200),duration,easeOutCubic);
+        wheel.spinTo(randomInRangeint(3600,4200),duration,easeOutCubic);
 
       }
   

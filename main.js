@@ -16,7 +16,7 @@ var nosound=true;
 var color;
 var col = ['#ff9900','#7b94ff','#38b6ff','#c1ff72','#ff7272','#ff00cf'];
 var loc = ["inside.html","outside.html","food.html","adventure.html","sensual.html","love.html"];
-
+var wholecoupon;
 const pSBC=(p,c0,c1,l)=>{
     let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
     let pSBCr = null;
@@ -100,7 +100,7 @@ function message_popup(text,title,coupon){
     document.getElementById('category').innerHTML="<u>" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal; word-break: keep-all ;\"></span>";
 
     $('#coupon').text(" "+coupon);
-
+    wholecoupon = category + "-" + title + ": " + coupon;
 
 }
 function confetti_effect(stext, index) {
@@ -214,13 +214,14 @@ export {playticksound};
         } else {
             if (navigator.share) {
                 navigator.share({
-                  title: 'WebShare API Demo',
+                  title: 'Love Coupon',
+                  text : "Look What I got. I spinned the wheel and received this coupon!\n " + wholecoupon
                 }).then(() => {
                   console.log('Thanks for sharing!');
                 })
                 .catch(console.error);
               } else {
-                console.log("fallback");
+                alert("Unfortunately sharing is not supported by your browser/platform");
             }
         }
         });
