@@ -100,7 +100,7 @@ function message_popup(text,title,coupon){
     document.getElementById('category').innerHTML="<u>" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal; word-break: keep-all ;\"></span>";
 
     $('#coupon').text(" "+coupon);
-    wholecoupon = category + "-" + title + ": " + coupon;
+    wholecoupon = title + "-" + text + ": " + coupon;
 
 }
 function confetti_effect(stext, index) {
@@ -215,13 +215,13 @@ export {playticksound};
             if (navigator.share) {
                 navigator.share({
                   title: 'Love Coupon',
-                  text : "Look What I got. I spinned the wheel and received this coupon!\n " + wholecoupon
+                  text : "Look What I've got! I spinned the wheel (for Love Coupons) and received this coupon!\n " + wholecoupon
                 }).then(() => {
-                  console.log('Thanks for sharing!');
+
                 })
                 .catch(console.error);
               } else {
-                alert("Unfortunately sharing is not supported by your browser/platform");
+                alert("Unfortunately sharing is not supported by your browser/platform. Please take a screenshot instead");
             }
         }
         });
