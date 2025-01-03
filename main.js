@@ -14,7 +14,7 @@ var pageindex=0;
 var triggered=false;
 var nosound=true;
 var color;
-var col = ['#ff9900','#7b94ff','#38b6ff','#c1ff72','#ff7272','#ff00cf'];
+var col = ['#ff9900','#566FFAFF','#38b6ff','#79D600FF','#ff7272','#ff00cf'];
 var loc = ["inside.html","outside.html","food.html","adventure.html","sensual.html","love.html"];
 var wholecoupon;
 const pSBC=(p,c0,c1,l)=>{
@@ -115,7 +115,7 @@ function confetti_effect(stext, index) {
     $('#or').hide();
     $('#girl').hide();
     stopParticles();
-    document.getElementsByTagName("body")[0].style.backgroundColor = pSBC(-0.3,col[index],false,true);
+    document.getElementsByTagName("body")[0].style.backgroundColor = pSBC(0.5,col[index],false,false);
     document.getElementsByTagName("body")[0].style.backgroundImage = 'none';
     //document.getElementById("H3").insertAdjacentHTML('afterend', "<h4 id='testtext' style='white-space:normal'> Depending on the product you buy, here it will say either <br> 'It is a Girl!' or 'It is a Boy! with pink or blue background.</h4>");
 
@@ -193,6 +193,19 @@ export {playticksound};
         }
         startParticles(color);
         if (document.getElementById("button")!== null){
+            $(document).click(function(event) { 
+                if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    document.getElementById('myDropdown').style.display='none';
+                    for (i = 0; i < dropdowns.length; i++) {
+                      var openDropdown = dropdowns[i];
+                      if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                      }
+                    }
+                  }
+              });
             $('.dropbtn').on("click", function(e) {
                 document.getElementById('myDropdown').style.display='block';
             });
@@ -203,6 +216,7 @@ export {playticksound};
                 nosound=true;
             }
         });
+        
         $('.withsoundbtn').on("click", function (e) {
             if (pageindex==0) {
             document.getElementById('id01').style.display='none';
