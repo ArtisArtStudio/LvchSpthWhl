@@ -192,13 +192,16 @@ export {playticksound};
             document.getElementById('id01').style.display='block';
         }
         startParticles(color);
-        $('.dropbtn').on("click", function(e) {
-            document.getElementById('myDropdown').style.display='block';
-
-        });
+        if (document.getElementById("button")!== null){
+            $('.dropbtn').on("click", function(e) {
+                document.getElementById('myDropdown').style.display='block';
+            });
+        }
         $('.nosoundbtn').on("click", function (e) {
             document.getElementById('id01').style.display='none';
-            nosound=true;
+            if (pageindex==0) {
+                nosound=true;
+            }
         });
         $('.withsoundbtn').on("click", function (e) {
             if (pageindex==0) {
