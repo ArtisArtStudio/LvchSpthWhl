@@ -1,4 +1,4 @@
-import {confetti_effect, playticksound, onResetClicked, getlocAddress, getOS, getOSver} from './main.js';
+import {categorySpinned, playticksound, getlocAddress, resetpage, getOS, getOSver} from './main.js';
 var finishedSpin = false;
 var catText = ["Inside the House","Outside the House", "Food Related", "Adventurous","Sensual","Love Vouchers"];
 
@@ -77,10 +77,8 @@ window.onload = async () => {
           return;
         }
 
-        confetti_effect(catText[wheel._currentIndex],wheel._currentIndex);
-        finishedSpin = true;
-        btn.value = "Go to the Category";
-
+        categorySpinned(catText[wheel._currentIndex],wheel._currentIndex);
+        finishedSpin = true;        
     };
     var playtick = function() {
         //if (wheel.isSpinning===1) {
@@ -109,15 +107,10 @@ window.onload = async () => {
       if (e.target === btn) {
         
         if (finishedSpin) {
-                location.href = getlocAddress(wheel._currentIndex);
-        }
-            /*wheel.spinTo(1);
-          wheel.isSpinning=0;
-          onResetClicked();
-          document.getElementById("scratcher-box").focus();
-          return;*/
-        
-    
+                location.href = btn.href;
+                resetpage();
+        } 
+
         if (wheel.isSpinning) {
           return;
         }

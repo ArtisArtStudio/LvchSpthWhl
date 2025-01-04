@@ -103,7 +103,7 @@ function message_popup(text,title,coupon){
     wholecoupon = title + "-" + text + ": " + coupon;
 
 }
-function confetti_effect(stext, index) {
+function categorySpinned(stext, index) {
     soundHandle.src = 'audio/celebrate.mp3';
     $("#spinbtn").hide();
     $("#button").hide();
@@ -111,16 +111,16 @@ function confetti_effect(stext, index) {
     $('#tboy').text(stext);
     $('#tboy').css('color',col[index]);
     $('#boy').hide();
-    //$('.images').hide();
-    $('#or').hide();
-    $('#girl').hide();
+
     stopParticles();
     document.getElementsByTagName("body")[0].style.backgroundColor = pSBC(0.5,col[index],false,false);
     document.getElementsByTagName("body")[0].style.backgroundImage = 'none';
     //document.getElementById("H3").insertAdjacentHTML('afterend', "<h4 id='testtext' style='white-space:normal'> Depending on the product you buy, here it will say either <br> 'It is a Girl!' or 'It is a Boy! with pink or blue background.</h4>");
-
+    var params = new URLSearchParams();
+    params.append("nosound",nosound);
+    document.getElementById("spinbtn").href=loc[index] + "?"+params.toString();
+    document.getElementById("spinbtn").value = "Go to the Category";
     $('#H3').hide();
-    $('#H4').hide();
     if(triggered==true) {
         return;
     }
@@ -134,26 +134,44 @@ function confetti_effect(stext, index) {
     setTimeout(function(){
         $("#spinbtn").show();
     }, 1000);
-   
- 
           
  };
 
- export {confetti_effect,getlocAddress, getOS, getOSver,message_popup};
+ function resetpage() {
+    //$("#resetbutton").hide();
+    $("#button").show();
+    $('#tboy').hide();
+    $('#boy').show();
+    $('#or').show();
+    $('#H3').show();
+    document.getElementById("spinbtn").value = "Spin!";
+    document.getElementsByTagName("body")[0].style.backgroundImage = 'url(images/background.jpg)';
+    triggered = false;
+    //confetti.reset();
+    soundHandle.pause();
+    soundHandle.currentTime = 0;   
+    startParticles("#FF0000"); 
+    return false;
+};
+export {resetpage};
 
-    function playticksound() {
+export {categorySpinned,getlocAddress, getOS, getOSver,message_popup};
+
+
+function playticksound() {
 
         if (!nosound ) {
             createjs.Sound.volume = 0.2;
             createjs.Sound.play("sound");
         }
 
-    }
+}
 export {playticksound};
 
-    function supportsCanvas() {
+function supportsCanvas() {
         return !!document.createElement('canvas').getContext;
     };
+
     function gotohtml(index) {
         var params = new URLSearchParams();
         params.append("nosound",nosound);
@@ -161,23 +179,8 @@ export {playticksound};
     }
     
 
-    function onResetClicked() {
-        //$("#resetbutton").hide();
-        $("#button").hide();
-        $('#tboy').hide();
-        $('#boy').show();
-        $('#or').show();
-        document.getElementById("spinbtn").value = "Spin!";
-        document.getElementsByTagName("body")[0].style.backgroundColor = "#FFFFFF";
-        triggered = false;
-        //confetti.reset();
-        soundHandle.pause();
-        soundHandle.currentTime = 0;    
-        return false;
-    };
-    export {onResetClicked};
-
-   function initsound(){
+   
+function initsound(){
     soundHandle = document.getElementById('soundHandle');              
     soundHandle.autoplay = true;
     soundHandle.muted=false;

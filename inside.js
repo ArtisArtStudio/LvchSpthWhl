@@ -1,4 +1,4 @@
-import {confetti_effect, playticksound, onResetClicked, getlocAddress, getOS, getOSver, message_popup} from './main.js';
+import {playticksound, getOS, getOSver, message_popup} from './main.js';
 var finishedSpin = false;
 
 
