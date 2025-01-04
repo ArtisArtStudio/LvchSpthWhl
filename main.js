@@ -142,6 +142,7 @@ function confetti_effect(stext, index) {
  export {confetti_effect,getlocAddress, getOS, getOSver,message_popup};
 
     function playticksound() {
+
         if (!nosound ) {
             createjs.Sound.volume = 0.2;
             createjs.Sound.play("sound");
@@ -153,7 +154,11 @@ export {playticksound};
     function supportsCanvas() {
         return !!document.createElement('canvas').getContext;
     };
-    
+    function gotohtml(index) {
+        var params = new URLSearchParams();
+        params.append("nosound",nosound);
+        window.location.href = loc[index-1] + "?"+params.toString();
+    }
     
 
     function onResetClicked() {
@@ -172,7 +177,15 @@ export {playticksound};
     };
     export {onResetClicked};
 
-   
+   function initsound(){
+    soundHandle = document.getElementById('soundHandle');              
+    soundHandle.autoplay = true;
+    soundHandle.muted=false;
+    soundHandle.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+    soundHandle.play();
+    soundHandle.pause();
+    createjs.Sound.registerSound({src:"audio/tick.mp3", id:"sound"});
+   }
     
     function initPage() {
         var i, i1;
@@ -190,6 +203,12 @@ export {playticksound};
         if (pageindex==0) {
             color="#FF0000";
             document.getElementById('id01').style.display='block';
+        }else {
+            var params = new URLSearchParams(window.location.search);
+            nosound = params.get("nosound");
+            nosound  = (nosound == 'true');
+            nosound  = (nosound == 'false');
+            initsound();
         }
         startParticles(color);
         if (document.getElementById("button")!== null){
@@ -204,7 +223,22 @@ export {playticksound};
                         openDropdown.classList.remove('show');
                       }
                     }
-                  }
+                }
+                if(event.target.matches('#drp1')){
+                    gotohtml(1);
+                }
+                if(event.target.matches('#drp2')){
+                    gotohtml(2);
+                }
+                if(event.target.matches('#drp3')){
+                    gotohtml(3);
+                }
+                if(event.target.matches('#drp4')){
+                    gotohtml(4);
+                }
+                if(event.target.matches('#drp5')){
+                    gotohtml(5);
+                }
               });
             $('.dropbtn').on("click", function(e) {
                 document.getElementById('myDropdown').style.display='block';
@@ -221,13 +255,7 @@ export {playticksound};
             if (pageindex==0) {
             document.getElementById('id01').style.display='none';
             nosound=false;
-            soundHandle = document.getElementById('soundHandle');              
-            soundHandle.autoplay = true;
-            soundHandle.muted=false;
-            soundHandle.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-            soundHandle.play();
-            soundHandle.pause();
-            createjs.Sound.registerSound({src:"audio/tick.mp3", id:"sound"});
+            initsound();
         } else {
             if (navigator.share) {
                 navigator.share({
@@ -242,7 +270,6 @@ export {playticksound};
             }
         }
         });
-       
     };
     
     /**

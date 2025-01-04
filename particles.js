@@ -42,7 +42,7 @@ async function loadParticles(options) {
         speed: 0.4
       },
       number: {
-        value: 200
+        value: 100
       },
       opacity: {
         value: {
@@ -56,7 +56,7 @@ async function loadParticles(options) {
       size: {
         value: {
           min:10,
-          max:30
+          max:20
         }
       }    
     }
