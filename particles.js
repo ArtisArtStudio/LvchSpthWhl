@@ -46,19 +46,19 @@ async function loadParticles(options) {
       number: {
         value: 100
       },
-      opacity: {
+      /* opacity: {
         value: {
           min: 0.2,
           max: 0.5
         }
-      },
+      }, */
       shape: {
         type: "heart"
       },
       size: {
         value: {
-          min:10,
-          max:20
+          min:5,
+          max:10
         }
       }    
     }
