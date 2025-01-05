@@ -17,6 +17,8 @@ async function loadParticles(options) {
   
   const options = {
     "autoPlay": true,
+    fpsLimit: 30,
+    detectRetina: false,
     fullScreen: 
     {
         enable: true,
@@ -64,6 +66,8 @@ async function loadParticles(options) {
   
 const optionsConfetti = {
   autoPlay: true,
+  fpsLimit: 30,
+  detectRetina: false,
   fullScreen: {
     enable: true
   },
