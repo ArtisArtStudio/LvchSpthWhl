@@ -214,7 +214,7 @@ function initsound(){
             initsound();
         }
         startParticles(color);
-        if (document.getElementById("button")!== null){
+        if (document.getElementById('myDropdown')!== null){
             $(document).click(function(event) { 
                 if (!event.target.matches('.dropbtn')) {
                     var dropdowns = document.getElementsByClassName("dropdown-content");

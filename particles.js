@@ -104,15 +104,15 @@ const optionsConfetti = {
       enable: true,
       gravity: {
         enable: true,
-        acceleration: 20
+        acceleration: 10
       },
       speed: {
-        min: 25,
-        max: 50
+        min: 20,
+        max: 30
       },
       drift: {
         min: -2,
-        max: 2
+        max: 1
       },
       decay: 0.05,
       direction: "none",

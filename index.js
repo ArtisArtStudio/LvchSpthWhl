@@ -1,8 +1,8 @@
 import {categorySpinned, playticksound, getlocAddress, resetpage, getOS, getOSver} from './main.js';
-var finishedSpin = false;
 var catText = ["Inside the House","Outside the House", "Food Related", "Adventurous","Sensual","Love Vouchers"];
 
 window.onload = async () => {
+    var finishedSpin = false;
     /* let elem = document.getElementById('scratcher-box');
     let ht = window.getComputedStyle(elem, null).getPropertyValue("top"); */
     /* let mql = window.matchMedia("(max-height: 321px)");
