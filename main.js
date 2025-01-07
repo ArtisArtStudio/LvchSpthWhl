@@ -3,19 +3,19 @@
  *
  * depends on jQuery>=1.7
  */
-import {startParticles, stopParticles, startConfetti, stopConfetti} from './particles.js';
-
+//import {startParticles, stopParticles, startConfetti, stopConfetti} from './particles.js';
 
 var userOS;    // will either be iOS, Android or unknown
 var userOSver; // this is a string, use Number(userOSver) to convert
 var soundHandle = new Audio();
+var params;
 //var soundcounter= 0;
 var pageindex=0;
 var triggered=false;
 var nosound=true;
 var color;
-var col = ['#ff9900','#566FFAFF','#38b6ff','#79D600FF','#ff7272','#ff00cf'];
-var loc = ["inside.html","outside.html","food.html","adventure.html","sensual.html","love.html"];
+var col = ['#FF0000','#ff9900','#566FFAFF','#38b6ff','#79D600FF','#ff7272','#ff00cf'];
+var loc = ["index.html","inside.html","outside.html","food.html","adventure.html","sensual.html","love.html"];
 var wholecoupon;
 const pSBC=(p,c0,c1,l)=>{
     let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
@@ -45,9 +45,9 @@ const pSBC=(p,c0,c1,l)=>{
 function randomInRange(min, max) {
     return Math.random() * (max - min) + min;
 };
-function randomInRangeint(min, max) {
+/* function randomInRangeint(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
-};
+}; */
 
 function getlocAddress(i){
     return loc[i];
@@ -93,18 +93,26 @@ function getOS(){
 function getOSver(){
     return userOSver.slice(0,2);
 }
+function play_finishsound(){
+    if (!nosound) {
+        soundHandle.src = 'audio/celebrate.mp3';
+        soundHandle.volume=0.5;
+        soundHandle.play();
+    }
+}
 function message_popup(text,title,coupon){
     document.getElementById('id01').style.display='block';
     document.getElementById('form').style.backgroundColor =color;
     document.getElementById('title').textContent=title;
     document.getElementById('category').innerHTML="<u>" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal; word-break: keep-all ;\"></span>";
-
+    play_finishsound();
+    start_confetti(color);
     $('#coupon').text(" "+coupon);
     wholecoupon = title + "-" + text + ": " + coupon;
 
 }
+
 function categorySpinned(stext, index) {
-    soundHandle.src = 'audio/celebrate.mp3';
     $("#spinbtn").hide();
     $("#button").hide();
     $('#tboy').show();
@@ -112,11 +120,9 @@ function categorySpinned(stext, index) {
     $('#tboy').css('color',col[index]);
     $('#boy').hide();
 
-    stopParticles();
     document.getElementsByTagName("body")[0].style.backgroundColor = pSBC(0.5,col[index],false,false);
     document.getElementsByTagName("body")[0].style.backgroundImage = 'none';
     //document.getElementById("H3").insertAdjacentHTML('afterend', "<h4 id='testtext' style='white-space:normal'> Depending on the product you buy, here it will say either <br> 'It is a Girl!' or 'It is a Boy! with pink or blue background.</h4>");
-    var params = new URLSearchParams();
     params.append("nosound",nosound);
     document.getElementById("spinbtn").href=loc[index] + "?"+params.toString();
     document.getElementById("spinbtn").value = "Go to the Category";
@@ -124,19 +130,36 @@ function categorySpinned(stext, index) {
     if(triggered==true) {
         return;
     }
-    if (!nosound) {
-        soundHandle.volume=0.5;
-        soundHandle.play();
-    }
+    play_finishsound();
     triggered=true;
-   
-    startConfetti(col[index]);
+    start_confetti(col[index]);
     setTimeout(function(){
         $("#spinbtn").show();
-    }, 1000);
-          
+    }, 1000);          
  };
+ function start_confetti(confetti_color) {
+    var duration = 1 * 1000;
+   var end = Date.now() + duration;
+   var defaults = { startVelocity: 10, spread: 360, ticks: 70, zIndex: 10 };
+   var particleCount = 5 ;
+  
+   (function frame() {
+   // launch a few confetti from the left edge
+   confetti({...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: [confetti_color]}
+   );
+   // and launch a few from the right edge
+   confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },colors: [confetti_color]}
+   );
 
+   // keep going until we are out of time
+   if (Date.now() < end) {
+       requestAnimationFrame(frame);
+       
+       return;
+   }
+
+    }());
+ }
  function resetpage() {
     //$("#resetbutton").hide();
     $("#button").show();
@@ -150,7 +173,6 @@ function categorySpinned(stext, index) {
     //confetti.reset();
     soundHandle.pause();
     soundHandle.currentTime = 0;   
-    startParticles("#FF0000"); 
     return false;
 };
 export {resetpage};
@@ -173,9 +195,9 @@ function supportsCanvas() {
     };
 
     function gotohtml(index) {
-        var params = new URLSearchParams();
+        //params = new URLSearchParams();
         params.append("nosound",nosound);
-        window.location.href = loc[index-1] + "?"+params.toString();
+        window.location.href = loc[index] + "?"+params.toString();
     }
     
 
@@ -191,10 +213,16 @@ function initsound(){
    }
     
     function initPage() {
-        var i, i1;
-        //document.getElementById('intro').innerHTML= "This is a gender reveal spin the wheel for <strong>" + surname + "</strong> family. It contains high level sound. Do you want to continue with sound?";
-        //document.getElementById('myDropdown').style.display='none';
+      
         findOS();
+        params = new URLSearchParams(window.location.search);
+        nosound = params.get("nosound");
+        if (nosound!==null){
+            if (nosound == 'true') nosound=true;
+            if (nosound == 'false') nosound=false;           
+        } else {
+            document.getElementById('id01').style.display='block';
+        }
         var tx = document.getElementById('boy').innerText;
         if (tx.slice(0,4)==="Love") {
             pageindex = 0;
@@ -202,18 +230,28 @@ function initsound(){
         if (tx.slice(0,4)==="Insi") {
             pageindex = 1;
         }
-        color = col[pageindex-1];
+        window.addEventListener('onbeforeunload', function() {
+            history.pushState(null, null, document.URL);
+        });
+        window.addEventListener('popstate', function(event) {
+    
+        // Perform actions to update the page content if needed
+          console.log('Back button was clicked');
+    
+        // For example, you can update the UI or fetch new content using AJAX.
+        /* if (pageindex!=0) {
+            gotohtml(0);
+        };  */
+        params.append("nosound",nosound);
+        window.location.href = loc[0] + "?"+params.toString();
+      
+      });
+        initsound();
         if (pageindex==0) {
             color="#FF0000";
-            document.getElementById('id01').style.display='block';
-        }else {
-            var params = new URLSearchParams(window.location.search);
-            nosound = params.get("nosound");
-            nosound  = (nosound == 'true');
-            nosound  = (nosound == 'false');
-            initsound();
         }
-        startParticles(color);
+        color = col[pageindex];
+
         if (document.getElementById('myDropdown')!== null){
             $(document).click(function(event) { 
                 if (!event.target.matches('.dropbtn')) {
@@ -259,7 +297,7 @@ function initsound(){
             document.getElementById('id01').style.display='none';
             nosound=false;
             initsound();
-        } else {
+            } else {
             if (navigator.share) {
                 navigator.share({
                   title: 'Love Coupon',

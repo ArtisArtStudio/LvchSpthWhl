@@ -368,13 +368,13 @@ backdrop-filter: blur(30px);
 }
 @media (max-width: 375px), (max-height:667px) {
   .pagetop h4 {
-    font-size: calc(0.7rem + 0.8vw) ;
+    font-size: calc(0.7rem + 0.8vh) ;
   }
   .pagetop h1 {
-    font-size: calc(3rem + 1.8vw);
+    font-size: calc(3rem + 1.8vh);
   }
   .pagetop h3 {
-    font-size: calc(1.2rem + 0.5vw);
+    font-size: calc(1rem);
   }
   /* #mainbody {
     position: inherit;
@@ -394,7 +394,7 @@ backdrop-filter: blur(30px);
     position:absolute;
     width: 20em;
     height: 20em; 
-    top: 65%;
+    top: 67%;
   }
   
 } 

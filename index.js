@@ -77,7 +77,7 @@ window.onload = async () => {
           return;
         }
 
-        categorySpinned(catText[wheel._currentIndex],wheel._currentIndex);
+        categorySpinned(catText[wheel._currentIndex],wheel._currentIndex+1);
         finishedSpin = true;        
     };
     var playtick = function() {

@@ -12,42 +12,8 @@ window.onload = async () => {
     // alert(window.innerWidth);
     // alert(window.innerHeight);
 
-    var catText =  ["Breakfast in bed","Massage Night", "Love Playlist", "Art Night", "Movie Marathon\
-        ", "DIY Project", "Slideshow Night", "Board Game Battle", "Scavenger Hunt", "Home Makeover\
-        ", "Bubble Bath for Two", "Watch the Sunrise", "Create a Scrapbook","Build a Fort","Puzzling Puzzle\
-        ", "Gardening Together","Stargazing Night", "Candle Lit Dinner","Time Capsule","Tech-free Evening\
-        ","Meditation Session","Write Love Letters","Charades Night","Write a Bucket List","Romance Novel\
-        ","New Hobby Together","Couples Trivia Night","Plan a Dream Vacation","Workout Night","Video Game Night"];
-    var couponText = ["Enjoy a leisurely morning by sleeping in together and have a deliciously homemade breakfast served in bed.\
-        ", "Pamper each other with a relaxing massage for a soothing and intimate experience. Use Massage oils with scent\
-        ","Compile a playlist of songs that hold special meaning. Dance together in the living room to celebrate your unique connection\
-        ","Unleash your creativity together through painting, drawing, or using adult coloring books\
-        ","Pick your favorite movies or explore new ones for a cozy movie night at home\
-        ","Collaborate on a do-it-yourself project, like building furniture or crafting\
-        ","Prepare a slideshow from the photos of the most memorable moments together. project the photos to the TV if possible\
-        ","Challenge each other to friendly competition with board games\
-        ","Plan a scavenger hunt for each other, leading to a surprise\
-        ","Tackle a home improvement project together for a sense of accomplishment\
-        ","Relax in a bubble bath with a soothing music and surrounded by candlelights\
-        ","Wake up early and watch the sunrise together\
-        ","Compile memories into a scrapbook that reflects your journey\
-        ","Rediscover childhood by building a cozy fort together, e.g. using pillows\
-        ","Tackle a challenging puzzle as a team\
-        ","Plant flowers or herbs for a shared project\
-        ","Find a quiet spot, lay a blanket, and enjoy the celestial display on a clear night\
-        ","Set the mood with a romantic dinner at home, complete with candles and your favorite dishes\
-        ","Create a time capsule by collecting items, photos and writing letters to your future selves and bury them in\
-        ","Disconnect from all devices, snuggle and spend quality time talking. Use candles and blankets to create a cozy atmosphere\
-        ","Relax and connect through a guided meditation and mindfulness practice\
-        ","Take the time to express your feelings through handwritten letters\
-        ","Unleash laughter and connection with a cozy charades session - act out movies or books. Include a romantic prize for the winner\
-        ","Dream together and make a list of activities you want to do as a couple\
-        ","Prepare a cozy corner, choose a romantic novel and read a chapter to each other in turns\
-        ","Use online video tutorials to learn a new hobby together, such as photography, astronomy, cooking etc.\
-        ","Create questions about your partner, relationship and favorite things and test your knowledge about each other\
-        ","Spend an evening planning your dream vacation even if you don’t have a budget now. dream together and use your imaginations\
-        ","Elevate your bond with indoor workout. use an online video or home workout app to sweat together\
-        ","Play a video game together to bond through shared adventures and teamwork"]
+    var catText =  ["Breakfast in bed","Massage Night", "Love Playlist", "Art Night", "Movie Marathon", "DIY Project", "Slideshow Night", "Board Game Battle", "Scavenger Hunt", "Home Makeover", "Bubble Bath for Two", "Watch the Sunrise", "Create a Scrapbook","Build a Fort","Puzzling Puzzle", "Gardening Together","Stargazing Night", "Candle Lit Dinner","Time Capsule","Tech-free Evening","Meditation Session","Write Love Letters","Charades Night","Write a Bucket List","Romance Novel","New Hobby Together","Couples Trivia Night","Plan a Dream Vacation","Workout Night","Video Game Night"];
+    var couponText = ["Enjoy a leisurely morning by sleeping in together and have a deliciously homemade breakfast served in bed", "Pamper each other with a relaxing massage for a soothing and intimate experience. Use Massage oils with scent","Compile a playlist of songs that hold special meaning. Dance together in the living room to celebrate your unique connection","Unleash your creativity together through painting, drawing, or using adult coloring books","Pick your favorite movies or explore new ones for a cozy movie night at home","Collaborate on a do-it-yourself project, like building furniture or crafting","Prepare a slideshow from the photos of the most memorable moments together. project the photos to the TV if possible","Challenge each other to friendly competition with board games","Plan a scavenger hunt for each other, leading to a surprise","Tackle a home improvement project together for a sense of accomplishment","Relax in a bubble bath with a soothing music and surrounded by candlelights","Wake up early and watch the sunrise together","Compile memories into a scrapbook that reflects your journey","Rediscover childhood by building a cozy fort together, e.g. using pillows","Tackle a challenging puzzle as a team","Plant flowers or herbs for a shared project","Find a quiet spot, lay a blanket, and enjoy the celestial display on a clear night","Set the mood with a romantic dinner at home, complete with candles and your favorite dishes","Create a time capsule by collecting items, photos and writing letters to your future selves and bury them in","Disconnect from all devices, snuggle and spend quality time talking. Use candles and blankets to create a cozy atmosphere","Relax and connect through a guided meditation and mindfulness practice","Take the time to express your feelings through handwritten letters","Unleash laughter and connection with a cozy charades session - act out movies or books. Include a romantic prize for the winner","Dream together and make a list of activities you want to do as a couple","Prepare a cozy corner, choose a romantic novel and read a chapter to each other in turns","Use online video tutorials to learn a new hobby together, such as photography, astronomy, cooking etc.","Create questions about your partner, relationship and favorite things and test your knowledge about each other","Spend an evening planning your dream vacation even if you don't have a budget now. dream together and use your imaginations","Elevate your bond with indoor workout. use an online video or home workout app to sweat together","Play a video game together to bond through shared adventures and teamwork"];
     var a = new Image();
     /* if (userOS ="iOS" && userOSver<13) {
         a.src = './images/spinthewheel-overlay.png';
@@ -186,10 +152,9 @@ window.onload = async () => {
         }
 
         message_popup(catText[wheel._currentIndex],"Inside the House",couponText[wheel._currentIndex]);
-        finishedSpin=true;
         wheel.spinTo(1);
         wheel.isSpinning=0;
-
+        finishedSpin=true;
     };
     var playtick = function() {
         //if (wheel.isSpinning===1) {
@@ -223,7 +188,7 @@ window.onload = async () => {
         const duration = 7000;
         //playticksound();
         document.getElementById("scratcher-box").focus();
-        wheel.spinTo(randomInRangeint(3600,4200),duration,easeOutCubic);
+        wheel.spinTo(randomInRangeint(500,2000),duration,easeOutCubic);
 
       }
   
@@ -248,9 +213,9 @@ window.onload = async () => {
   }
 }
 function resetWheel(wheel){
+    wheel.spinTo(1);
     wheel.isSpinning=0;
     finishedSpin=true;
-    wheel.spinTo(1);
 }
 function randomInRangeint(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
