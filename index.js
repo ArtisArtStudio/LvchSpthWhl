@@ -1,6 +1,8 @@
-import {categorySpinned, playticksound, getlocAddress, resetpage, getOS, getOSver} from './main.js';
-var catText = ["Inside the House","Outside the House", "Food Related", "Adventurous","Sensual","Love Vouchers"];
-
+import {categorySpinned, playticksound, getCat, getcolor, resetpage, getOS, getOSver} from './main.js';
+var catText = new Array(6);
+for (let i=0;i<6;i++){
+    catText[i]=getCat(i);
+}
 window.onload = async () => {
     var finishedSpin = false;
     /* let elem = document.getElementById('scratcher-box');
@@ -35,36 +37,38 @@ window.onload = async () => {
         itemLabelAlign: "center",
         itemLabelColors: ['#000'],
         itemLabelBaselineOffset: 0,
-        itemBackgroundColors: ['#ffde59','#7b94ff','#38b6ff','#c1ff72','#ff7272','#ff00cf'],
+        itemBackgroundColors: ['#ffffff'],
         rotationSpeed: 10,
         rotationResistance: 5,
         lineWidth: 1,
         overlayImage: a,
         borderWidth: 0,
-      items: [
-        {
-          label: catText[0],
-        },
-        {
-            label: catText[1],
-        },
-        {
-          label: catText[2],
-        },
-        {
-          label: catText[3],
-        },
-        {
-          label: catText[4],
-        },
-        {
-          label: catText[5],
-        },
-      ],
+      items: [{
+        label: catText[0],
+      },
+      {
+          label: catText[1],
+      },
+      {
+        label: catText[2],
+      },
+      {
+        label: catText[3],
+      },
+      {
+        label: catText[4],
+      },
+      {
+        label: catText[5],
+      },
+    ],
       itemLabelRadiusMax: 0.2,
     };
-  
-    
+    var c = new Array(6);
+    for (let i=0;i<6;i++){
+        c[i]=getcolor(i+1,false);
+    }
+    props.itemBackgroundColors = c;
     await loadImages(a);
     const wheel = new Wheel(container, props);
     wheel.isInteractive = true;
@@ -94,9 +98,9 @@ window.onload = async () => {
          function(evt) {
             //alert(document.visibilityState);
           if (document.visibilityState != "visible" && wheel.isSpinning==1) {
+            wheel.spinTo(1);
             wheel.isSpinning=0;
             finishedSpin=true;
-            wheel.spinTo(1);
             }
         },
         false,

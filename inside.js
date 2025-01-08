@@ -1,4 +1,4 @@
-import {playticksound, getOS, getOSver, message_popup} from './main.js';
+import {playticksound, getcolor, getOS, getOSver, message_popup} from './main.js';
 var finishedSpin = false;
 
 
@@ -38,7 +38,7 @@ window.onload = async () => {
         itemLabelAlign: "center",
         itemLabelColors: ['#000'],
         itemLabelBaselineOffset: 0,
-        itemBackgroundColors: ['#ffde59','#FFFFFF'],
+        itemBackgroundColors: ['#FFFFFF','#FFFFFF'],
         rotationSpeed: 10,
         rotationResistance: 5,
         lineWidth: 1,
@@ -138,7 +138,7 @@ window.onload = async () => {
           ],      
           itemLabelRadiusMax: 0.2,
     };
-    
+    props.itemBackgroundColors = [getcolor(null,true),'#FFFFFF'];
     await loadImages(a);
     const wheel = new Wheel(container, props);
     wheel.isInteractive = true;
@@ -151,7 +151,7 @@ window.onload = async () => {
           return;
         }
 
-        message_popup(catText[wheel._currentIndex],"Inside the House",couponText[wheel._currentIndex]);
+        message_popup(catText[wheel._currentIndex],couponText[wheel._currentIndex]);
         wheel.spinTo(1);
         wheel.isSpinning=0;
         finishedSpin=true;
@@ -169,8 +169,10 @@ window.onload = async () => {
         "visibilitychange",
          function(evt) {
             //alert(document.visibilityState);
-          if (document.visibilityState != "visible") {
-                resetWheel(wheel);
+            if (document.visibilityState != "visible" && wheel.isSpinning==1) {
+                wheel.spinTo(1);
+                wheel.isSpinning=0;
+                finishedSpin=true;
             }
         },
         false,
@@ -212,11 +214,7 @@ window.onload = async () => {
     throw new Error('An image could not be loaded');
   }
 }
-function resetWheel(wheel){
-    wheel.spinTo(1);
-    wheel.isSpinning=0;
-    finishedSpin=true;
-}
+
 function randomInRangeint(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 };
@@ -1284,7 +1282,7 @@ var Wheel = class {
             break
         }
         
-        this.refreshCursor(), e > 90 && this.spinTo(randomInRangeint(3600,7200),7000,easeOutCubic);// && this.beginSpin(e * (1e3 / 250), "interact")
+        this.refreshCursor(), e > 90 && this.spinTo(randomInRangeint(500,2000),7000,easeOutCubic);// && this.beginSpin(e * (1e3 / 250), "interact")
     }
     isDragEventTooOld(e = 0, t = {}) {
         return e - t.now > 250

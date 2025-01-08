@@ -14,8 +14,9 @@ var pageindex=0;
 var triggered=false;
 var nosound=true;
 var color;
-var col = ['#FF0000','#ff9900','#566FFAFF','#38b6ff','#79D600FF','#ff7272','#ff00cf'];
-var loc = ["index.html","inside.html","outside.html","food.html","adventure.html","sensual.html","love.html"];
+var col = ['#FF0000','#ff9900','#38b6ff','#566FFAFF','#79D600FF','#ff7272','#ff00cf'];
+var loc = ["index.html","inside.html","food.html","outside.html","adventure.html","sensual.html","love.html"];
+var catText = ["Inside the House","Food Related","Outside the House","Adventurous","Sensual","Love Vouchers"];
 var wholecoupon;
 const pSBC=(p,c0,c1,l)=>{
     let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
@@ -51,6 +52,16 @@ function randomInRange(min, max) {
 
 function getlocAddress(i){
     return loc[i];
+}
+function getcolor(index,current){
+    if (!current) {
+        return col[index];
+    } else {
+        return col[pageindex];
+    }
+}
+function getCat(index){
+    return catText[index];
 }
 
 function findOS()
@@ -100,10 +111,10 @@ function play_finishsound(){
         soundHandle.play();
     }
 }
-function message_popup(text,title,coupon){
+function message_popup(text,coupon){
     document.getElementById('id01').style.display='block';
     document.getElementById('form').style.backgroundColor =color;
-    document.getElementById('title').textContent=title;
+    document.getElementById('title').textContent=catText[pageindex-1];
     document.getElementById('category').innerHTML="<u>" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal; word-break: keep-all ;\"></span>";
     play_finishsound();
     start_confetti(color);
@@ -177,7 +188,7 @@ function categorySpinned(stext, index) {
 };
 export {resetpage};
 
-export {categorySpinned,getlocAddress, getOS, getOSver,message_popup};
+export {categorySpinned,getlocAddress, getOS, getOSver,message_popup, getcolor,getCat};
 
 
 function playticksound() {
@@ -230,6 +241,21 @@ function initsound(){
         if (tx.slice(0,4)==="Insi") {
             pageindex = 1;
         }
+        if (tx.slice(0,4)==="Food") {
+            pageindex = 2;
+        }
+        if (tx.slice(0,4)==="Outs") {
+            pageindex = 3;
+        }
+        if (tx.slice(0,4)==="Adve") {
+            pageindex = 4;
+        }
+        if (tx.slice(0,4)==="Sens") {
+            pageindex = 5;
+        }
+        if (tx.slice(tx.length-4,tx.length)==="hers") {
+            pageindex = 6;
+        }
         window.addEventListener('onbeforeunload', function() {
             history.pushState(null, null, document.URL);
         });
@@ -247,9 +273,6 @@ function initsound(){
       
       });
         initsound();
-        if (pageindex==0) {
-            color="#FF0000";
-        }
         color = col[pageindex];
 
         if (document.getElementById('myDropdown')!== null){
@@ -279,6 +302,9 @@ function initsound(){
                 }
                 if(event.target.matches('#drp5')){
                     gotohtml(5);
+                }
+                if(event.target.matches('#drp6')){
+                    gotohtml(6);
                 }
               });
             $('.dropbtn').on("click", function(e) {
