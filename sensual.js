@@ -13,7 +13,7 @@ window.onload = async () => {
     // alert(window.innerHeight);
 
     var catText =  ["Blindfolded Taste Testing","Fantasy Role-Play","Intimate Photo Shoot","Lingerie Shopping","Toy Exploration","Dice Game","Strip Poker","Sexting Fantasy","Striptease Surprise","Mirror Play"];
-    var couponText = ["Explore senses with blindfolded taste tests. Choose sweet/savory treats that can be lickable","Dress-up and act out desires with imaginative role-play to ignite shared fantasies","Capture private moments, exploring each other’s sensuality","Shop for enticing lingerie to fulfill shared fantasy desires together","Explore pleasure together experimenting with a variety of sex toys","Roll for various sensual activities to keep things unpredictable","Combine cards and sensuality for a playful night","Share fantasies through text messages","Surprise your partner with a seductive striptease","Watch yourselves in the mirror for visual stimulation"];
+    var couponText = ["Explore senses with blindfolded taste tests. Choose sweet/savory treats that can be lickable","Dress-up and act out desires with imaginative role-play to ignite shared fantasies","Capture private moments, exploring each other's sensuality","Shop for enticing lingerie to fulfill shared fantasy desires together","Explore pleasure together experimenting with a variety of sex toys","Roll for various sensual activities to keep things unpredictable","Combine cards and sensuality for a playful night","Share fantasies through text messages","Surprise your partner with a seductive striptease","Watch yourselves in the mirror for visual stimulation"];
     var a = new Image();
     /* if (userOS ="iOS" && userOSver<13) {
         a.src = './images/spinthewheel-overlay.png';

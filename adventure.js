@@ -92,7 +92,7 @@ window.onload = async () => {
           return;
         }
 
-        message_popup(catText[wheel._currentIndex],"Inside the House",couponText[wheel._currentIndex]);
+        message_popup(catText[wheel._currentIndex],couponText[wheel._currentIndex]);
         wheel.spinTo(1);
         wheel.isSpinning=0;
         finishedSpin=true;

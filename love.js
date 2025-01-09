@@ -12,8 +12,12 @@ window.onload = async () => {
     // alert(window.innerWidth);
     // alert(window.innerHeight);
 
-    var catText =  ["Blindfolded Taste Testing","Fantasy Role-Play","Intimate Photo Shoot","Lingerie Shopping","Toy Exploration","Dice Game","Strip Poker","Sexting Fantasy","Striptease Surprise","Mirror Play"];
-    var couponText = ["Explore senses with blindfolded taste tests. Choose sweet/savory treats that can be lickable","Dress-up and act out desires with imaginative role-play to ignite shared fantasies","Capture private moments, exploring each other’s sensuality","Shop for enticing lingerie to fulfill shared fantasy desires together","Explore pleasure together experimenting with a variety of sex toys","Roll for various sensual activities to keep things unpredictable","Combine cards and sensuality for a playful night","Share fantasies through text messages","Surprise your partner with a seductive striptease","Watch yourselves in the mirror for visual stimulation"];
+    var catText =  ["Massage","Chore pass","Your wish","Auto win","Serenade","Cuddling","Yes day","Buddy Bonding Pass","Surprise","Kiss"];
+    var couponText = ["","a pass to skip a chore of your choice for","the right to grant a wish, redeemable for any heartfelt desire or favor","a victorious win in a future loving disagreement","a personalized serenade under the moonlight","a dedicated cuddle session whenever you need it, for","a full day where your every request is met with a resounding 'yes' within reason, of course!","a permission to have a night out with your buddies, no questions asked","the right to receive a surprise from your partner with a thoughtful gesture","a kiss of your choice from your partner for "];
+    var couponTime = ["10min","20min","30min"];
+    var massageType= ["foot","back","full body","sensual","neck and shoulder"];
+    var choreTime = ["1 day","2 days"];
+    var kissTime = ["1min","2min","5min"];
     var a = new Image();
     /* if (userOS ="iOS" && userOSver<13) {
         a.src = './images/spinthewheel-overlay.png';
@@ -91,8 +95,22 @@ window.onload = async () => {
           finishedSpin=false;
           return;
         }
+        var windex =  wheel._currentIndex;
+        var ctext = "You've earned " + couponText[windex];
 
-        message_popup(catText[wheel._currentIndex],couponText[wheel._currentIndex]);
+        if (windex==0){
+                ctext = ctext + "a " + massageType[randomInRangeint(0,massageType.length)] + " massage from your partner for " + couponTime[randomInRangeint(0,couponTime.length)];
+        }
+        if (windex==1){
+            ctext = ctext + " " + choreTime[randomInRangeint(0,choreTime.length)];
+        }
+        if (windex==5){
+            ctext = ctext + " "+ couponTime[randomInRangeint(0,couponTime.length)];
+        }
+        if (windex==9){
+            ctext = ctext + " " + kissTime[randomInRangeint(0,kissTime.length)];
+        }
+        message_popup(catText[windex], ctext);
         wheel.spinTo(1);
         wheel.isSpinning=0;
         finishedSpin=true;

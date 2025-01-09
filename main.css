@@ -60,13 +60,12 @@ body {
 } */
 
 .pagetop h1 {
-font-family: "Pacifico", cursive;
 display:flexbox;
 font-weight: 400;
 flex-direction: column;
 font-size: calc(3rem + 4vw);
 text-align: center;
-text-shadow: 4px 4px #ffffff;
+text-shadow: 2px 1px 2px  #000000;
 } 
 .pagetop h3 {
 font-family: "Roboto", serif;
@@ -321,7 +320,7 @@ backdrop-filter: blur(30px);
     font-size: calc(0.7rem + 1vw) ;
   }
   .pagetop h1 {
-    font-size: calc(2.5rem + 4vw);
+    font-size: calc(3rem + 4vw);
   }
    #scratcher-box {
     width: 24em;
@@ -357,12 +356,12 @@ backdrop-filter: blur(30px);
     font-size: 2vh;
   }
   #boy{
-    line-height: 16vh !important;
+    line-height: 18vh !important;
   }
   #scratcher-box {
     position:absolute;
-    width: 26em;
-    height: 26em; 
+    width: 30em;
+    height: 30em; 
     top: 67%;
   }
 }

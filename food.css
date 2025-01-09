@@ -15,11 +15,16 @@ body {
     }
   
     #boy{
-      line-height: 18vh !important;
+      line-height: 13vh !important;
     }
   }
   @media (min-height: 635px) and (min-width: 1024px){ 
-    
+    .pagetop h1 {
+      font-size: calc(3rem + 2vw);
+    }
+    #boy{
+      line-height: 10vh !important;
+    }
   }
   @media (max-width: 375px), (max-height:667px) {
 
@@ -33,5 +38,7 @@ body {
      .pagetop h1 {
       font-size: calc(2rem + 2vw);
     }
-   
+    #boy{
+      line-height: 10vh !important;
+    }
   }
