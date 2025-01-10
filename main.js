@@ -121,7 +121,7 @@ function message_popup(text,coupon){
     document.getElementById('category').innerHTML="<u>" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal;\"></span>";
     play_finishsound();
     start_confetti(color);
-    $('#coupon').text(" " +tname+", "+coupon);
+    $('#coupon').text(" " + coupon);
     //wholecoupon = title + "-" + text + ": " + coupon;
 
 }
