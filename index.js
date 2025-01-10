@@ -97,7 +97,7 @@ window.onload = async () => {
         "visibilitychange",
          function(evt) {
             //alert(document.visibilityState);
-          if (document.visibilityState != "visible" && wheel.isSpinning==1) {
+          if (document.visibilityState != "visible" && wheel.isSpinning==1&& finishedSpin==false) {
             wheel.spinTo(1);
             wheel.isSpinning=0;
             finishedSpin=true;
