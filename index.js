@@ -1,4 +1,4 @@
-import {categorySpinned, playticksound, getCat, getcolor, resetpage, getOS, getOSver} from './main.js';
+import {categorySpinned, playticksound, getCat, getcolor, gotohtml, getOS, getOSver} from './main.js';
 var catText = new Array(6);
 for (let i=0;i<6;i++){
     catText[i]=getCat(i);
@@ -111,8 +111,7 @@ window.onload = async () => {
       if (e.target === btn) {
         
         if (finishedSpin) {
-                location.href = btn.href;
-                resetpage();
+            gotohtml(wheel._currentIndex+1);
         } 
 
         if (wheel.isSpinning) {

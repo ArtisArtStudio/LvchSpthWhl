@@ -135,8 +135,7 @@ function categorySpinned(stext, index) {
     document.getElementsByTagName("body")[0].style.backgroundColor = pSBC(0.5,col[index],false,false);
     document.getElementsByTagName("body")[0].style.backgroundImage = 'none';
     //document.getElementById("H3").insertAdjacentHTML('afterend', "<h4 id='testtext' style='white-space:normal'> Depending on the product you buy, here it will say either <br> 'It is a Girl!' or 'It is a Boy! with pink or blue background.</h4>");
-    params.append("nosound",nosound);
-    document.getElementById("spinbtn").href=loc[index] + "?"+params.toString();
+    
     document.getElementById("spinbtn").value = "Go to the Category";
     $('#H3').hide();
     if(triggered==true) {
@@ -187,9 +186,16 @@ function categorySpinned(stext, index) {
     soundHandle.currentTime = 0;   
     return false;
 };
-export {resetpage};
+function gotohtml(index) {
+    //params = new URLSearchParams();
+    if (params.get("nosound")==null) {
+        params.append("nosound",nosound);
+    }
+    window.location.href = loc[index] + "?" + params.toString();
+    
+}
 
-export {categorySpinned,getlocAddress, getOS, getOSver,message_popup, getcolor,getCat};
+export {resetpage, gotohtml, categorySpinned,getlocAddress, getOS, getOSver,message_popup, getcolor,getCat};
 
 
 function playticksound() {
@@ -206,14 +212,7 @@ function supportsCanvas() {
         return !!document.createElement('canvas').getContext;
     };
 
-    function gotohtml(index) {
-        //params = new URLSearchParams();
-        if (!params.get("nosound")) {
-            params.append("nosound",nosound);
-        }
-        window.location.href = loc[index] + "?"+params.toString();
-        
-    }
+
     
 
    
@@ -230,6 +229,7 @@ function initsound(){
     function initPage() {
       
         findOS();
+        history.pushState(null, null, document.URL);
         params = new URLSearchParams(window.location.search.slice(1));
         nosound = params.get("nosound");
         fname = params.get("fname");
@@ -278,7 +278,7 @@ function initsound(){
         /* if (pageindex!=0) {
             gotohtml(0);
         };  */
-        params.append("nosound",nosound);
+        //params.append("nosound",nosound);
         window.location.href = loc[0] + "?"+params.toString();
       
       });
