@@ -122,7 +122,7 @@ window.onload = async () => {
         const duration = 7000;
         //playticksound();
         document.getElementById("scratcher-box").focus();
-        wheel.spinTo(randomInRangeint(3600,7200),duration,easeOutCubic);
+        wheel.spinTo(randomInRangeint(3600,4200),duration,easeOutCubic);
 
       }
   
@@ -1213,7 +1213,7 @@ var Wheel = class {
             break
         }
         
-        this.refreshCursor(), e > 90 && this.spinTo(randomInRangeint(3600,7200),7000,easeOutCubic);// && this.beginSpin(e * (1e3 / 250), "interact")
+        this.refreshCursor(), e > 90 && this.spinTo(randomInRangeint(3600,4200),7000,easeOutCubic);// && this.beginSpin(e * (1e3 / 250), "interact")
     }
     isDragEventTooOld(e = 0, t = {}) {
         return e - t.now > 250

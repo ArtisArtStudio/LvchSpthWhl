@@ -12,8 +12,8 @@ window.onload = async () => {
     // alert(window.innerWidth);
     // alert(window.innerHeight);
 
-    var catText =  ["Massage","Chore pass","Your wish","Auto win","Serenade","Cuddling","Yes day","Buddy Bonding Pass","Surprise","Kiss"];
-    var couponText = ["","a pass to skip a chore of your choice for","the right to grant a wish, redeemable for any heartfelt desire or favor","a victorious win in a future loving disagreement","a personalized serenade under the moonlight","a dedicated cuddle session whenever you need it, for","a full day where your every request is met with a resounding 'yes' within reason, of course!","a permission to have a night out with your buddies, no questions asked","the right to receive a surprise from your partner with a thoughtful gesture","a kiss of your choice from your partner for "];
+    var catText =  ["Massage","Chore pass","Your wish","Auto win","Serenade","Cuddling","Yes day","Buddy Bonding Pass","Surprise","Kiss","1 Hour Quiet Time","TV Remote"];
+    var couponText = ["","a pass to skip a chore of your choice for","the right to grant a wish, redeemable for any heartfelt desire or favor","a victorious win! You will automatically win a future loving disagreement","a personalized serenade under the moonlight","a dedicated cuddle session whenever you need it, for","a full day where your every request is met with a resounding 'yes' within reason, of course!","a permission to have a night out with your buddies, no questions asked","the right to receive a surprise from your partner with a thoughtful gesture","a kiss of your choice from your partner for ","the right to one uninterrupted hour of peace and quiet","the right to have total control of the remote for a day"];
     var couponTime = ["10min","20min","30min"];
     var massageType= ["foot","back","full body","sensual","neck and shoulder"];
     var choreTime = ["1 day","2 days"];
@@ -78,6 +78,12 @@ window.onload = async () => {
             },
             {
                 label: catText[9],
+            },
+            {
+                label: catText[10],
+            },
+            {
+                label: catText[11],
             },
             
           ],      

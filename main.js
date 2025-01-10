@@ -107,9 +107,11 @@ function getOSver(){
 }
 function play_finishsound(){
     if (!nosound) {
-        soundHandle.src = 'audio/celebrate.mp3';
+        /* soundHandle.src = 'audio/celebrate.mp3';
         soundHandle.volume=0.5;
-        soundHandle.play();
+        soundHandle.play(); */
+        createjs.Sound.volume = 0.2;
+        createjs.Sound.play("celebrate");
     }
 }
 function message_popup(text,coupon){
@@ -119,8 +121,8 @@ function message_popup(text,coupon){
     document.getElementById('category').innerHTML="<u>" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal;\"></span>";
     play_finishsound();
     start_confetti(color);
-    $('#coupon').text(" "+coupon);
-    wholecoupon = title + "-" + text + ": " + coupon;
+    $('#coupon').text(" " +tname+", "+coupon);
+    //wholecoupon = title + "-" + text + ": " + coupon;
 
 }
 
@@ -217,12 +219,13 @@ function supportsCanvas() {
 
    
 function initsound(){
-    soundHandle = document.getElementById('soundHandle');              
+   /*  soundHandle = document.getElementById('soundHandle');              
     soundHandle.autoplay = true;
     soundHandle.muted=false;
     soundHandle.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
     soundHandle.play();
-    soundHandle.pause();
+    soundHandle.pause(); */
+    createjs.Sound.registerSound({src:"audio/celebrate.mp3", id:"celebrate"})
     createjs.Sound.registerSound({src:"audio/tick.mp3", id:"sound"});
    }
     
@@ -230,13 +233,29 @@ function initsound(){
       
         findOS();
         history.pushState(null, null, document.URL);
+        var tx = window.location.pathname;
+        for(var x=0;x<loc.length;x++){
+            if (tx.search(loc[x])!=-1){
+                pageindex=x;
+            }
+        }
+        
         params = new URLSearchParams(window.location.search.slice(1));
         nosound = params.get("nosound");
         fname = params.get("fname");
         tname = params.get("tname");
+        if (fname==null) {
+            fname="Someone";
+        }
+        if (tname==null){
+            tname="";
+        }
         if (nosound!==null){
             if (nosound == 'true') nosound=true;
-            if (nosound == 'false') nosound=false;           
+            if (nosound == 'false') nosound=false;
+            if (pageindex==0) {
+                resetpage();
+            }           
         } else {
             nosound=true;
             document.getElementById('fname').innerText = fname;
@@ -244,28 +263,7 @@ function initsound(){
             document.getElementById('id01').style.display='block';
         }
 
-        var tx = document.getElementById('boy').innerText;
-        if (tx.slice(0,4)==="Love") {
-            pageindex = 0;
-        }
-        if (tx.slice(0,4)==="Insi") {
-            pageindex = 1;
-        }
-        if (tx.slice(0,4)==="Food") {
-            pageindex = 2;
-        }
-        if (tx.slice(0,4)==="Outs") {
-            pageindex = 3;
-        }
-        if (tx.slice(0,4)==="Adve") {
-            pageindex = 4;
-        }
-        if (tx.slice(0,4)==="Sens") {
-            pageindex = 5;
-        }
-        if (tx.slice(tx.length-4,tx.length)==="hers") {
-            pageindex = 6;
-        }
+        
         window.addEventListener('onbeforeunload', function() {
             history.pushState(null, null, document.URL);
         });
