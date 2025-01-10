@@ -14,6 +14,7 @@ var pageindex=0;
 var triggered=false;
 var nosound=true;
 var color;
+var fname, tname;
 var col = ['#FF0000','#ff9900','#38b6ff','#566FFAFF','#79D600FF','#ff7272','#ff00cf'];
 var loc = ["index.html","inside.html","food.html","outside.html","adventure.html","sensual.html","love.html"];
 var catText = ["Inside the House","Food Related","Outside the House","Adventurous","Sensual","Love Vouchers"];
@@ -229,14 +230,20 @@ function initsound(){
     function initPage() {
       
         findOS();
-        params = new URLSearchParams(window.location.search);
+        params = new URLSearchParams(window.location.search.slice(1));
         nosound = params.get("nosound");
+        fname = params.get("fname");
+        tname = params.get("tname");
         if (nosound!==null){
             if (nosound == 'true') nosound=true;
             if (nosound == 'false') nosound=false;           
         } else {
+            nosound=true;
+            document.getElementById('fname').innerText = fname;
+            document.getElementById('tname').innerText = tname + "! ";
             document.getElementById('id01').style.display='block';
         }
+
         var tx = document.getElementById('boy').innerText;
         if (tx.slice(0,4)==="Love") {
             pageindex = 0;
