@@ -349,19 +349,22 @@ backdrop-filter: blur(30px);
   }
 }
 @media (min-height: 635px) and (min-width: 1024px){ 
+  .pagetop h1 {
+    font-size: calc(3rem + 4vw);
+  }
   .pagetop h3 {
-    font-size: calc(1.3rem + 1vh);
+    font-size: calc(1.3rem + 0.5vh);
   }
   .pagetop h4 {
     font-size: 2vh;
   }
   #boy{
-    line-height: 18vh !important;
+    line-height: 15vh !important;
   }
   #scratcher-box {
     position:absolute;
-    width: 30em;
-    height: 30em; 
+    width: 29em;
+    height: 29em; 
     top: 67%;
   }
 }

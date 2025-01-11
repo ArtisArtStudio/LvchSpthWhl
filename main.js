@@ -123,7 +123,7 @@ function message_popup(text,coupon){
     play_finishsound();
     start_confetti(color);
     $('#coupon').text(" " + coupon);
-    //wholecoupon = title + "-" + text + ": " + coupon;
+    wholecoupon = title + "-" + text + ": " + coupon;
 
 }
 
@@ -240,7 +240,6 @@ function initsound(){
                 pageindex=x;
             }
         }
-        console.log("init"+window.location.pathname);
         params = new URLSearchParams(window.location.search.slice(1));
         nosound = params.get("nosound");
         fname = params.get("fname");
@@ -269,15 +268,6 @@ function initsound(){
             history.pushState(null, null, document.URL);
         });
         window.addEventListener('popstate', function(event) {
-    
-        // Perform actions to update the page content if needed
-          console.log('Back button was clicked');
-    
-        // For example, you can update the UI or fetch new content using AJAX.
-        /* if (pageindex!=0) {
-            gotohtml(0);
-        };  */
-        //params.append("nosound",nosound);
         window.location.href = loc[0] + "?"+params.toString();
       
       });
