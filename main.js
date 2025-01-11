@@ -350,7 +350,8 @@ function initsound(){
     /**
      * Handle page load
      */
-    $(function() {
+    
+    $(document).ready(async function() {
         if (supportsCanvas()) {
             initPage();
         } else {
