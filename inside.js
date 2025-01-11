@@ -2,8 +2,7 @@ import {playticksound, getcolor, getOS, getOSver, message_popup} from './main.js
 var finishedSpin = false;
 
 
-
-window.onload = async () => {
+ window.onload = async () => {
     /* let elem = document.getElementById('scratcher-box');
     let ht = window.getComputedStyle(elem, null).getPropertyValue("top"); */
     /* let mql = window.matchMedia("(max-height: 321px)");
@@ -198,7 +197,7 @@ window.onload = async () => {
   
     });  
    
-  };
+};
 //   function fetchWinningItemIndexFromApi() {
 //     // Simulate a call to the back-end
 //     return 0;

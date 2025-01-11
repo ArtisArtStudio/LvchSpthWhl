@@ -351,8 +351,8 @@ function initsound(){
     /**
      * Handle page load
      */
-    
-    $(document).ready(async function() {
+    window.addEventListener('load', function() {
+        //$(document).ready(function() {
         if (supportsCanvas()) {
             initPage();
         } else {
