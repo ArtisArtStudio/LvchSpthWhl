@@ -123,7 +123,7 @@ function message_popup(text,coupon){
     play_finishsound();
     start_confetti(color);
     $('#coupon').text(" " + coupon);
-    wholecoupon = title + "-" + text + ": " + coupon;
+    wholecoupon = catText[pageindex-1] + "-" + text + ": " + coupon;
 
 }
 
