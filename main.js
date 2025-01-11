@@ -55,6 +55,7 @@ function getlocAddress(i){
     return loc[i];
 }
 function getcolor(index,current){
+    console.log("color"+window.location.pathname);
     if (!current) {
         return col[index];
     } else {
@@ -239,7 +240,7 @@ function initsound(){
                 pageindex=x;
             }
         }
-        
+        console.log("init"+window.location.pathname);
         params = new URLSearchParams(window.location.search.slice(1));
         nosound = params.get("nosound");
         fname = params.get("fname");
