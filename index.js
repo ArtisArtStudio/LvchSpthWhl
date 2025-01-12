@@ -82,7 +82,8 @@ window.onload = async () => {
         }
 
         categorySpinned(catText[wheel._currentIndex],wheel._currentIndex+1);
-        finishedSpin = true;        
+        finishedSpin = true;
+                
     };
     var playtick = function() {
         //if (wheel.isSpinning===1) {
@@ -108,8 +109,7 @@ window.onload = async () => {
     window.addEventListener('click', (e) => {
   
       // Listen for click event on spin button:
-      if (e.target === btn) {
-        
+      if (e.target === btn) {        
         if (finishedSpin) {
             gotohtml(wheel._currentIndex+1);
         } 
@@ -345,13 +345,13 @@ function V(i = {}) {
     });
 
     let e = () => {
-        var OS = getOS();
+       /*  var OS = getOS();
         var OSver = getOSver();
-        if ((OS === 'iOS' && Number(OSver) >= 14 ) || OS === 'Android') {
+        if ((OS === 'iOS' && Number(OSver.slice(0,2)) >= 14 ) || OS === 'Android') {
         i._mediaQueryList = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`), i._mediaQueryList.addEventListener("change", i._handler_onDevicePixelRatioChange, {
             once: !0
         })
-    }
+    } */
     };
     i._handler_onDevicePixelRatioChange = () => {
         i.resize(), e()

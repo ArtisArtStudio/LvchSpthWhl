@@ -445,13 +445,13 @@ function V(i = {}) {
     });
 
     let e = () => {
-        var OS = getOS();
+ /*        var OS = getOS();
         var OSver = getOSver();
-        if ((OS === 'iOS' && Number(OSver) >= 14 ) || OS === 'Android') {
+        if ((OS === 'iOS' && Number(OSver.slice(0,2)) >= 14 ) || OS === 'Android') {
         i._mediaQueryList = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`), i._mediaQueryList.addEventListener("change", i._handler_onDevicePixelRatioChange, {
             once: !0
         })
-    }
+    } */
     };
     i._handler_onDevicePixelRatioChange = () => {
         i.resize(), e()

@@ -189,7 +189,7 @@ var finishedSpin = false;
         const duration = 7000;
         //playticksound();
         document.getElementById("scratcher-box").focus();
-        wheel.spinTo(randomInRangeint(500,2000),duration,easeOutCubic);
+        wheel.spinTo(randomInRangeint(500,1000),duration,easeOutCubic);
 
       }
   
@@ -411,15 +411,14 @@ function V(i = {}) {
     }) => {
         i.resize(), t && i.draw(performance.now())
     });
-
     let e = () => {
-        var OS = getOS();
+/*         var OS = getOS();
         var OSver = getOSver();
-        if ((OS === 'iOS' && Number(OSver) >= 14 ) || OS === 'Android') {
+        if ((OS === 'iOS' && Number(OSver.slice(0,2)) >= 14 ) || OS === 'Android') {
         i._mediaQueryList = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`), i._mediaQueryList.addEventListener("change", i._handler_onDevicePixelRatioChange, {
             once: !0
         })
-    }
+    } */
     };
     i._handler_onDevicePixelRatioChange = () => {
         i.resize(), e()
@@ -1281,7 +1280,7 @@ var Wheel = class {
             break
         }
         
-        this.refreshCursor(), e > 90 && this.spinTo(randomInRangeint(500,2000),7000,easeOutCubic);// && this.beginSpin(e * (1e3 / 250), "interact")
+        this.refreshCursor(), e > 90 && this.spinTo(randomInRangeint(500,1000),7000,easeOutCubic);// && this.beginSpin(e * (1e3 / 250), "interact")
     }
     isDragEventTooOld(e = 0, t = {}) {
         return e - t.now > 250

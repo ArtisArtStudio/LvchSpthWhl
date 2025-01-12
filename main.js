@@ -9,7 +9,6 @@ var userOS;    // will either be iOS, Android or unknown
 var userOSver; // this is a string, use Number(userOSver) to convert
 var soundHandle = new Audio();
 var params;
-//var soundcounter= 0;
 var pageindex=0;
 var triggered=false;
 var nosound=true;
@@ -55,7 +54,6 @@ function getlocAddress(i){
     return loc[i];
 }
 function getcolor(index,current){
-    console.log("color"+window.location.pathname);
     if (!current) {
         return col[index];
     } else {
@@ -154,15 +152,16 @@ function categorySpinned(stext, index) {
  function start_confetti(confetti_color) {
     var duration = 1 * 1000;
    var end = Date.now() + duration;
-   var defaults = { startVelocity: 10, spread: 360, ticks: 70, zIndex: 10 };
+
+   var defaults = { startVelocity: 10, spread: 360, ticks: 70, zIndex: 10};               
    var particleCount = 5 ;
   
    (function frame() {
    // launch a few confetti from the left edge
-   confetti({...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: [confetti_color]}
+   confetti({...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }}//, colors: [confetti_color]}
    );
    // and launch a few from the right edge
-   confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },colors: [confetti_color]}
+   confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }}//,colors: [confetti_color]}
    );
 
    // keep going until we are out of time
@@ -184,9 +183,6 @@ function categorySpinned(stext, index) {
     document.getElementById("spinbtn").value = "Spin!";
     document.getElementsByTagName("body")[0].style.backgroundImage = 'url(images/background.jpg)';
     triggered = false;
-    //confetti.reset();
-    soundHandle.pause();
-    soundHandle.currentTime = 0;   
     return false;
 };
 function gotohtml(index) {
@@ -231,7 +227,7 @@ function initsound(){
    }
     
     function initPage() {
-      
+
         findOS();
         history.pushState(null, null, document.URL);
         var tx = window.location.pathname;
@@ -273,7 +269,6 @@ function initsound(){
       });
         initsound();
         color = col[pageindex];
-
         if (document.getElementById('myDropdown')!== null){
             $(document).click(function(event) { 
                 if (!event.target.matches('.dropbtn')) {
@@ -337,7 +332,6 @@ function initsound(){
         }
         });
     };
-    
     /**
      * Handle page load
      */
@@ -345,6 +339,8 @@ function initsound(){
         //$(document).ready(function() {
         if (supportsCanvas()) {
             initPage();
+           
+
         } else {
             $('#scratcher-box').hide();
             $('#lamebrowser').show();

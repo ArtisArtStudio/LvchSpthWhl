@@ -230,7 +230,7 @@ hr {
   display: table;
 }
 
-#spinbtn {
+#spinbtn, #spin {
   border: none;
   padding: 10px 40px;
   color: #ffffff;
