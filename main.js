@@ -117,7 +117,7 @@ function message_popup(text,coupon){
     document.getElementById('id01').style.display='block';
     document.getElementById('form').style.backgroundColor =color;
     document.getElementById('title').textContent=catText[pageindex-1];
-    document.getElementById('category').innerHTML="<u>" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal;\"></span>";
+    document.getElementById('category').innerHTML="<u style=\"white-space:normal\">" + text + ":</u>" + "<span id=\"coupon\" style=\"display:inline; color:#000000; white-space: normal;\"></span>";
     play_finishsound();
     start_confetti(color);
     $('#coupon').text(" " + coupon);

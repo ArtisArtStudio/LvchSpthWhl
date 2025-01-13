@@ -12,8 +12,8 @@ window.onload = async () => {
     // alert(window.innerWidth);
     // alert(window.innerHeight);
 
-    var catText =  ["Massage","Chore pass","Your wish","Auto win","Serenade","Cuddling","Yes day","Buddy Bonding Pass","Surprise","Kiss","1 Hour Quiet Time","TV Remote"];
-    var couponText = ["","a pass to skip a chore of your choice for","the right to grant a wish, redeemable for any heartfelt desire or favor","a victorious win! You will automatically win a future loving disagreement","a personalized serenade under the moonlight","a dedicated cuddle session whenever you need it, for","a full day where your every request is met with a resounding 'yes' within reason, of course!","a permission to have a night out with your buddies, no questions asked","the right to receive a surprise from your partner with a thoughtful gesture","a kiss of your choice from your partner for ","the right to one uninterrupted hour of peace and quiet","the right to have total control of the remote for a day"];
+    var catText =  ["Massage","Chore pass","Your wish","Auto win","Serenade","Cuddling","Yes day","Buddy Bonding Pass","Surprise","Kiss","1 Hour Quiet Time","TV Remote", "Role Reversal", "Compliment on Demand"];
+    var couponText = ["","a pass to skip a chore of your choice for","the right to grant a wish, redeemable for any heartfelt desire or favor","a victorious win! You will automatically win a future loving disagreement","a personalized serenade under the moonlight","a dedicated cuddle session whenever you need it, for","a full day where your every request is met with a resounding 'yes' within reason, of course!","a permission to have a night out with your buddies, no questions asked","the right to receive a surprise from your partner with a thoughtful gesture","a kiss of your choice from your partner for ","the right to one uninterrupted hour of peace and quiet","the right to have total control of the remote for a day","Switch roles on a previously used love voucher. The partner who didn't spin gets to choose","the right to hear compliments from your partner whenever you ask, for "];
     var couponTime = ["10min","20min","30min"];
     var massageType= ["foot","back","full body","sensual","neck and shoulder"];
     var choreTime = ["1 day","2 days"];
@@ -85,7 +85,12 @@ window.onload = async () => {
             {
                 label: catText[11],
             },
-            
+            {
+                label: catText[12],
+            },
+            {
+                label: catText[13],
+            },
           ],      
           itemLabelRadiusMax: 0.2,
     };
@@ -103,7 +108,6 @@ window.onload = async () => {
         }
         var windex =  wheel._currentIndex;
         var ctext = "You've earned " + couponText[windex];
-
         if (windex==0){
                 ctext = ctext + "a " + massageType[randomInRangeint(0,massageType.length)] + " massage from your partner for " + couponTime[randomInRangeint(0,couponTime.length)];
         }
@@ -115,6 +119,12 @@ window.onload = async () => {
         }
         if (windex==9){
             ctext = ctext + " " + kissTime[randomInRangeint(0,kissTime.length)];
+        }
+        if (windex==12){
+            ctext = couponText[windex];
+        }
+        if (windex==13){
+            ctext = ctext + " " + choreTime[randomInRangeint(0,choreTime.length)];
         }
         message_popup(catText[windex], ctext);
         wheel.spinTo(1);

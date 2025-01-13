@@ -12,8 +12,8 @@ window.onload = async () => {
     // alert(window.innerWidth);
     // alert(window.innerHeight);
 
-    var catText =  ["Blindfolded Taste Testing","Fantasy Role-Play","Intimate Photo Shoot","Lingerie Shopping","Toy Exploration","Dice Game","Strip Poker","Sexting Fantasy","Striptease Surprise","Mirror Play"];
-    var couponText = ["Explore senses with blindfolded taste tests. Choose sweet/savory treats that can be lickable","Dress-up and act out desires with imaginative role-play to ignite shared fantasies","Capture private moments, exploring each other's sensuality","Shop for enticing lingerie to fulfill shared fantasy desires together","Explore pleasure together experimenting with a variety of sex toys","Roll for various sensual activities to keep things unpredictable","Combine cards and sensuality for a playful night","Share fantasies through text messages","Surprise your partner with a seductive striptease","Watch yourselves in the mirror for visual stimulation"];
+    var catText =  ["Blindfolded Tasting","Fantasy Role-Play","Intimate Photo Shoot","Lingerie Shopping","Toy Exploration","Dice Game","Strip Poker","Sexting Fantasy","Striptease Surprise","Mirror Play","Quickie Adventure","Breath Syncing"];
+    var couponText = ["Explore senses with blindfolded taste tests. Choose sweet/savory treats that can be lickable","Dress-up and act out desires with imaginative role-play to ignite shared fantasies","Capture private moments, exploring each other's sensuality","Shop for enticing lingerie to fulfill shared fantasy desires together","Explore pleasure together experimenting with a variety of sex toys","Roll for various sensual activities to keep things unpredictable","Combine cards and sensuality for a playful night","Share fantasies through text messages","Surprise your partner with a seductive striptease","Watch yourselves in the mirror for visual stimulation","Redeem for a spontaneous, passionate quickie wherever the mood strikes","Sit close and exercise to synchronize your breathing with your partner for a deeper connection"];
     var a = new Image();
     /* if (userOS ="iOS" && userOSver<13) {
         a.src = './images/spinthewheel-overlay.png';
@@ -75,6 +75,12 @@ window.onload = async () => {
             {
                 label: catText[9],
             },
+            {
+                label: catText[10],
+            },
+            {
+                label: catText[11],
+            },
             
           ],      
           itemLabelRadiusMax: 0.2,
@@ -91,7 +97,6 @@ window.onload = async () => {
           finishedSpin=false;
           return;
         }
-
         message_popup(catText[wheel._currentIndex],couponText[wheel._currentIndex]);
         wheel.spinTo(1);
         wheel.isSpinning=0;
