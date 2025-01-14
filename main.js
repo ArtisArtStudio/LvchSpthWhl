@@ -7,7 +7,6 @@
 
 var userOS;    // will either be iOS, Android or unknown
 var userOSver; // this is a string, use Number(userOSver) to convert
-var soundHandle = new Audio();
 var params;
 var pageindex=0;
 var triggered=false;
@@ -199,8 +198,8 @@ export {resetpage, gotohtml, categorySpinned,getlocAddress, getOS, getOSver,mess
 
 function playticksound() {
 
-        if (!nosound ) {
-            createjs.Sound.volume = 0.2;
+        if (!nosound) {
+            createjs.Sound.volume = 0.5;
             createjs.Sound.play("sound");
         }
 
@@ -222,8 +221,10 @@ function initsound(){
     soundHandle.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
     soundHandle.play();
     soundHandle.pause(); */
+   
     createjs.Sound.registerSound({src:"audio/celebrate.mp3", id:"celebrate"})
     createjs.Sound.registerSound({src:"audio/tick.mp3", id:"sound"});
+    createjs.Sound.defaultInterruptBehavior="late";
    }
     
     function initPage() {
